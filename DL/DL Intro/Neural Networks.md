@@ -94,8 +94,9 @@ However, this is both a blessing (since we can learn to classify more complicate
 **bias** можно инициализировать нулями, потому что симметрия уже нарушается случайной инициализацией весов.
 
 **Batch Normalization** - слой нейросети, который после линейного преобразования нормализует активации по текущему батчу
-
-![[Снимок экрана 2026-05-27 в 14.52.24.png|328]]
+![[Снимок экрана 2026-06-01 в 19.30.08.png|323]] ![[Снимок экрана 2026-05-27 в 14.52.24.png|264]]
+При обучении среднее и дисперсия по батчу, а при тесте - по train.
+Обоснование эффективности - открытая проблема
 
 ### Regularization
 
@@ -104,6 +105,7 @@ However, this is both a blessing (since we can learn to classify more complicate
 - **Elastic Net regularization:**  $\mathcal{L}_{\text{ElasticNet}} = \mathcal{L}(\theta) + \lambda_1 \|\theta\|_1 + \lambda_2 \|\theta\|_2^2$
 - **Max norm constraints:**  $\|\theta\|_2 < c$
 - **Dropout:** while training, dropout is implemented by only keeping a neuron active with some probability **p**, or setting it to zero otherwise.
+- **Gradient clipping:** работает пока дисперсия градиента маленькая
 
 ```Python
 """ 
@@ -187,3 +189,29 @@ $\frac{df(x)}{dx} = \frac{f(x+h)-f(x)}{h} \quad$ (bad, do not use) $\quad\quad\q
 **Forward-mode и reverse-mode** не конкурируют, а дополняют друг друга.
 
 Если входов мало, а выходов много, часто удобнее forward-mode. Если входов много, а выход скалярный — reverse-mode. Именно поэтому для обучения больших моделей reverse-mode почти безальтернативен.
+
+
+### Диагностика обучения нейросети
+
+**Data leakage** occurs when information that would not be available at prediction time is used when building the model. This results in overly optimistic performance estimates
+
+**Tiny-overfit test** - это быстрый sanity-check в машинном обучении, где модель намеренно обучают на очень маленьком наборе данных, чтобы убедиться, что она способна почти идеально его запомнить и что пайплайн обучения работает правильно
+
+| Что видно на графиках                          | Что означает                                  | Что делать                                                           |
+| ---------------------------------------------- | --------------------------------------------- | -------------------------------------------------------------------- |
+| Train loss падает, validation loss тоже падает | Нормальное обучение                           | Продолжать                                                           |
+| Train loss падает, validation loss растёт      | Overfitting                                   | Early stopping, регуляризация, augmentation, меньше модель           |
+| Train loss высокий и validation loss высокий   | Underfitting                                  | Больше модель, дольше обучение, лучше признаки, меньше регуляризации |
+| Train и validation сильно шумят                | Маленький датасет, большой LR, нестабильность | Уменьшить LR, увеличить batch, сгладить кривые                       |
+
+### Подбор гиперпараметров
+[Длинная умная статья](https://github.com/google-research/tuning_playbook)
+
+Before beginning hyperparameter tuning we must determine the starting point. This includes specifying the model configuration (e.g. number of layers), the optimizer hyperparameters (e.g. learning rate), and the number of training steps.
+
+| Метод                 | Суть                                                                        | Когда использовать                            |
+| --------------------- | --------------------------------------------------------------------------- | --------------------------------------------- |
+| Grid search           | Перебор всех комбинаций                                                     | Когда параметров мало                         |
+| Random search         | Случайные комбинации                                                        | Часто лучше grid при большом числе параметров |
+| Bayesian optimization | Умный поиск по прошлым результатам                                          | Когда обучение дорогое                        |
+| Optuna                | Фреймворк для автоматического поиска гиперпараметров, часто с TPE и pruning | Когда нужен удобный автоматизированный подбор |

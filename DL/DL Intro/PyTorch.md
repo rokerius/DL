@@ -135,3 +135,103 @@ for epoch in range(n_epochs):
 Это больше косметика уже
 
 #### Dataset
+```python
+from torch.utils.data import Dataset, TensorDataset
+
+class CustomDataset(Dataset):
+    def __init__(self, x_tensor, y_tensor):
+        self.x = x_tensor
+        self.y = y_tensor
+        
+    def __getitem__(self, index):
+        return (self.x[index], self.y[index])
+
+    def __len__(self):
+        return len(self.x)
+
+# *Wait, is this a CPU tensor now? Why? Where is .to(device)?
+x_train_tensor = torch.from_numpy(x_train).float()
+y_train_tensor = torch.from_numpy(y_train).float()
+
+train_data = CustomDataset(x_train_tensor, y_train_tensor)
+print(train_data[0])
+
+train_data = TensorDataset(x_train_tensor, y_train_tensor)
+print(train_data[0])
+```
+ *We don’t want our whole training data to be loaded into GPU tensors, as we have been doing in our example so far, because it takes up space in our precious graphics card’s RAM.
+
+#### DataLoader
+Until now, we have used the whole training data at every training step. It has been batch gradient descent all along. If we want to go serious about all this, we must use mini-batch gradient descent. Thus, we need mini-batches. Thus, we need to slice our dataset accordingly.
+
+Our loader will behave like an iterator, so we can loop over it and fetch a different mini-batch every time.
+```python
+from torch.utils.data import DataLoader
+
+train_loader = DataLoader(dataset=train_data, batch_size=16, shuffle=True)
+```
+
+```python
+# ...
+for epoch in range(n_epochs):
+    for x_batch, y_batch in train_loader:
+        # the dataset "lives" in the CPU, so do our mini-batches
+        # therefore, we need to send those mini-batches to the
+        # device where the model "lives"
+        x_batch = x_batch.to(device)
+        y_batch = y_batch.to(device)
+
+        loss = train_step(x_batch, y_batch)
+        losses.append(loss)
+```
+We could do the same for the **validation** data
+
+```python
+from torch.utils.data.dataset import random_split
+
+x_tensor = torch.from_numpy(x).float()
+y_tensor = torch.from_numpy(y).float()
+
+dataset = TensorDataset(x_tensor, y_tensor)
+
+train_dataset, val_dataset = random_split(dataset, [80, 20])
+
+train_loader = DataLoader(dataset=train_dataset, batch_size=16)
+val_loader = DataLoader(dataset=val_dataset, batch_size=20)
+```
+
+#### Evaluation
+We need to change the training loop to include the evaluation of our model, that is, computing the validation loss. The first step is to include another inner loop to handle the _mini-batches_ that come from the _validation loader_, sending them to the same device as our model. Next, we make predictions using our model and compute the corresponding loss.
+```python
+lr = 1e-1
+n_epochs = 1000
+torch.manual_seed(42)
+model = nn.Sequential(nn.Linear(1, 1)).to(device)
+loss_fn = nn.MSELoss(reduction='mean')
+optimizer = optim.SGD(model.parameters(), lr=lr)
+
+losses = []
+val_losses = []
+train_step = make_train_step(model, loss_fn, optimizer)
+
+for epoch in range(n_epochs):
+    for x_batch, y_batch in train_loader:
+        x_batch = x_batch.to(device)
+        y_batch = y_batch.to(device)
+
+        loss = train_step(x_batch, y_batch)
+        losses.append(loss)
+        
+    with torch.no_grad(): # смотрим резы на валидации
+        for x_val, y_val in val_loader:
+            x_val = x_val.to(device)
+            y_val = y_val.to(device)
+            model.eval()
+            yhat = model(x_val)
+            val_loss = loss_fn(y_val, yhat)
+            val_losses.append(val_loss.item())
+```
+
+#### [Колаб](https://colab.research.google.com/github/dvgodoy/AccompanyingNotebooks/blob/main/A%20Beginner-Friendly%20PyTorch%20Tutorial.ipynb)
+
+#### [Дьяконов, DL, PyTorch](https://github.com/Dyakonov/DL/blob/master/2022/DL_1NN_10pytorch_202302.pdf)

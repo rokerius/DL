@@ -8,18 +8,23 @@
 
 6. Стабилизация и регуляризация обучения. Инициализация, нормализация, dropout, weight decay, early stopping, data augmentation.
 
-#### Pytorch [тык](obsidian://open?vault=Study&file=DL%2FDL%20Intro%2FPyTorch)
+#### PyTorch [тык](obsidian://open?vault=Study&file=DL%2FDL%20Intro%2FPyTorch)
 7. Практический PyTorch-пайплайн. Tensor, autograd, nn.Module, Dataset, DataLoader, train/eval.
 
-
+#### Нейросети (в конце) [тык](/Users/rokerius/Obsidian/Study/Study/DL/DL Intro/Neural Networks.md)
 8. Диагностика обучения нейросети. Переобучение, leakage, tiny-overfit test, анализ train/validation curves, подбор гиперпараметров.
+
+#### CNN [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FConvolutional%20Neural%20Networks)
 9. Изображение как тензор и мотивация CNN. Почему полносвязная сеть плохо использует структуру изображения.
-- Операция свёртки. Локальность, разделение весов, padding, stride, dilation, receptive field.
-- Базовая CNN для классификации изображений. Feature maps, conv, pooling, classifier head.
-- Виды свёрток и эффективные операции. 1x1 convolution, separable/depthwise convolution, transposed convolution.
-- Классические CNN-архитектуры. LeNet, AlexNet, VGG, Inception: как развивались идеи глубины, свёрток и feature extraction.
-- ResNet и современные CNN-backbone. Skip connections, residual block, bottleneck, идеи эффективных архитектур.
+10. Операция свёртки. Локальность, разделение весов, padding, stride, dilation, receptive field.
+11. Базовая CNN для классификации изображений. Feature maps, conv, pooling, classifier head.
+12. Виды свёрток и эффективные операции. 1x1 convolution, separable/depthwise convolution, transposed convolution.
+13. Классические CNN-архитектуры. LeNet, AlexNet, VGG, Inception: как развивались идеи глубины, свёрток и feature extraction.
+14. ResNet и современные CNN-backbone. Skip connections, residual block, bottleneck, **идеи эффективных архитектур**.
+
+#### Transfer Learning [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FTransfer%20Learning)
 - Transfer learning в компьютерном зрении. Feature extraction, fine-tuning, заморозка слоёв, использование предобученных backbone.
+
 - Семантическая сегментация. Постановка задачи, отличие от классификации, superpixels, FCN, encoder-decoder подход.
 - U-Net и современные подходы к сегментации. Skip connections, upsampling, multi-scale features, transformer/promptable segmentation как расширения.
 - Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются.
