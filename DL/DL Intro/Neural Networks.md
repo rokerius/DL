@@ -12,22 +12,22 @@
 
 ### Commonly used activation functions
 
-**Sigmoid:**  σ(x) = 1/(1+e<sup>−x</sup>)
-- (-) _Sigmoids saturate and kill gradients_.
-- (-) _Sigmoid outputs are not zero-centered_.
-**Tanh**
--  _tanh(x)=2σ(2x)−1._
--  (+) _zero-centered_
-**ReLU**:  f(x) = max(0, x)
-- (+) _It was found to greatly accelerate the convergence of stochastic gradient descent compared to the sigmoid/tanh functions_
-- (+) _ReLU проще имплементировать_
-- (-) _ReLU units can be fragile during training and can “die”_
-**Leaky ReLU**:  f(x)=𝟙(x<0)(αx)+𝟙(x>=0)(x)
-- (+) _attempt to fix the “dying ReLU” problem_
-**Maxout**:  max(w<sup>T</sup><sub>1</sub>x+b<sub>1</sub>, w<sup>T</sup><sub>2</sub>x+b<sub>2</sub>,)
-- (+) _все плюсы leaky ReLU_
-- (+) _нет “dying ReLU” problem_
-- (-) _doubles the number of parameters_
+- **Sigmoid:**  σ(x) = 1/(1+e<sup>−x</sup>)
+	- (-) _Sigmoids saturate and kill gradients_.
+	- (-) _Sigmoid outputs are not zero-centered_.
+- **Tanh**
+	-  _tanh(x)=2σ(2x)−1._
+	-  (+) _zero-centered_
+- **ReLU**:  f(x) = max(0, x)
+	- (+) _It was found to greatly accelerate the convergence of stochastic gradient descent compared to the sigmoid/tanh functions_
+	- (+) _ReLU проще имплементировать_
+	- (-) _ReLU units can be fragile during training and can “die”_
+- **Leaky ReLU**:  f(x)=𝟙(x<0)(αx)+𝟙(x>=0)(x)
+	- (+) _attempt to fix the “dying ReLU” problem_
+- **Maxout**:  max(w<sup>T</sup><sub>1</sub>x+b<sub>1</sub>, w<sup>T</sup><sub>2</sub>x+b<sub>2</sub>,)
+	- (+) _все плюсы leaky ReLU_
+	- (+) _нет “dying ReLU” problem_
+	- (-) _doubles the number of parameters_
 
 ## Neural Network architectures
 ### Layer-wise organization
@@ -140,15 +140,15 @@ def predict(X):
 
 ### Loss functions
 
-**Classification:** 
-- SVM loss:  $L_i^{\text{SVM}} =\sum_{j \neq y_i}\max \left(0, f_j - f_{y_i} + \Delta \right)$
-- Cross-Entropy loss: $L_i^{\text{CE}} =-\log\left(\frac{e^{f_{y_i}}}{\sum_j e^{f_j}}\right)$
-**Attribute classification:**
-- $L_i = \sum_j \max \left(0,\; 1 - y_{ij} f_j \right), \quad y_{ij}=+1 \text{ если атрибут } j \text{ есть,} \quad y_{ij}=-1 \text{ если его нет.}$
-- Или можно учить лог. регрессию для каждого атрибута по отдельности
-- Log-loss = negative log-likelihood: $L_i = -\sum_j \left[y_{ij}\log(\sigma(f_j)) + (1-y_{ij})\log(1-\sigma(f_j))\right]$
-**Regression:**
-- MAE, MSE, RMSE, MAPE, ...
+- **Classification:** 
+	- SVM loss:  $L_i^{\text{SVM}} =\sum_{j \neq y_i}\max \left(0, f_j - f_{y_i} + \Delta \right)$
+	- Cross-Entropy loss: $L_i^{\text{CE}} =-\log\left(\frac{e^{f_{y_i}}}{\sum_j e^{f_j}}\right)$
+- **Attribute classification:**
+	- $L_i = \sum_j \max \left(0,\; 1 - y_{ij} f_j \right), \quad y_{ij}=+1 \text{ если атрибут } j \text{ есть,} \quad y_{ij}=-1 \text{ если его нет.}$
+	- Или можно учить лог. регрессию для каждого атрибута по отдельности
+	- Log-loss = negative log-likelihood: $L_i = -\sum_j \left[y_{ij}\log(\sigma(f_j)) + (1-y_{ij})\log(1-\sigma(f_j))\right]$
+- **Regression:**
+	- MAE, MSE, RMSE, MAPE, ...
 
 ## Learning
 [Источник](https://cs231n.github.io/neural-networks-3/)

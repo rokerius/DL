@@ -4,9 +4,10 @@
 **Convolutions End-to-End:** через Conv слои, но это дорого, оставляя размер таким же
 ![[Снимок экрана 2026-06-03 в 18.05.47.png]]
 **Fully Convolutional Nets:** состоят только из conv слоёв без fully connected слоёв, уменьшаем изображение, но как увеличить?
-![[Снимок экрана 2026-06-03 в 18.11.21.png|456]]
+![[Снимок экрана 2026-06-03 в 18.11.21.png|394]]![[Снимок экрана 2026-06-03 в 18.14.11.png|203]]
+
 - *Bilinear Interpolation:* просто размываем, есть также cubic, bicubic, 2D-NN, 1D-NN
-	![[Снимок экрана 2026-06-03 в 18.14.11.png|111]]
+
 - *Deconvolution* (Transposed convolution из конспекта по CNN): [объяснение](https://www.youtube.com/watch?v=qb4nRoEAASA)
 	 ![[Снимок экрана 2026-06-03 в 18.22.51.png]]
 	- Так расширение изображения происходит за счет обучения, в целом так получается *encoder-decoder подход*.
@@ -50,17 +51,18 @@ Vision Transformer [супер подробно](https://www.youtube.com/watch?v
 ### Метрики и функции потерь
 
 - *Pixel-wise cross-entropy (функция потерь):*
-	многоклассовая cross-entropy, применённая к каждому пикселю и затем усреднённая, если классы несбаланированны, то вводят веса.
-	$L_{\mathrm{CE}} = -\frac{1}{|\Omega|} \sum_{i \in \Omega} \log p_{i,y_i}.$
-	
+	- многоклассовая cross-entropy, применённая к каждому пикселю и затем усреднённая, если классы несбаланированны, то вводят веса.
+	- $L_{\mathrm{CE}} = -\frac{1}{|\Omega|} \sum_{i \in \Omega} \log p_{i,y_i}.$
+
 - *Intersection over Union (IoU):*
-	![[Снимок экрана 2026-06-03 в 19.16.14.png|209]]
-	$\mathrm{IoU}_c = \frac{TP_c}{TP_c + FP_c + FN_c}$
-	$\mathrm{mIoU} = \frac{1}{C} \sum_{c=1}^{C} \mathrm{IoU}_c$
+	- ![[Снимок экрана 2026-06-03 в 19.16.14.png|198]]
+	- $\mathrm{IoU}_c = \frac{TP_c}{TP_c + FP_c + FN_c}$
+	- $\mathrm{mIoU} = \frac{1}{C} \sum_{c=1}^{C} \mathrm{IoU}_c$
 
 - Mean Average Precision (mAP):
-	это среднее качество модели по всем классам: насколько хорошо она находит нужные объекты и не добавляет лишние. Задается через порог совпадения рамок IoU, оцениваем через PR-curve.
+	- Это среднее качество модели по всем классам: насколько хорошо она находит нужные объекты и не добавляет лишние. Задается через порог совпадения рамок IoU, оцениваем через PR-curve.
+
 - *Dice/F1:* 
-	$\mathrm{Dice} = \frac{2TP}{2TP + FP + FN}$
-	$\mathrm{Dice} = \frac{2\,\mathrm{IoU}}{1 + \mathrm{IoU}}$
+	- $\mathrm{Dice} = \frac{2TP}{2TP + FP + FN}$
+	- $\mathrm{Dice} = \frac{2\,\mathrm{IoU}}{1 + \mathrm{IoU}}$
 
