@@ -23,16 +23,16 @@
 14. ResNet и современные CNN-backbone. Skip connections, residual block, bottleneck, **идеи эффективных архитектур**.
 
 #### Transfer Learning [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FTransfer%20Learning)
-- Transfer learning в компьютерном зрении. Feature extraction, fine-tuning, заморозка слоёв, использование предобученных backbone.
+15. Transfer learning в компьютерном зрении. Feature extraction, fine-tuning, заморозка слоёв, использование предобученных backbone.
 
-- Семантическая сегментация. Постановка задачи, отличие от классификации, superpixels, FCN, encoder-decoder подход.
-- U-Net и современные подходы к сегментации. Skip connections, upsampling, multi-scale features, transformer/promptable segmentation как расширения.
-- Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются.
-- Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества.
+#### Semantic Segmentation [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FSemantic%20segmentation)
+16. Семантическая сегментация. Постановка задачи, отличие от классификации, superpixels, FCN, encoder-decoder подход.
+17. U-Net и современные подходы к сегментации. Skip connections, upsampling, multi-scale features, transformer/promptable segmentation как расширения.
+18. Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются.
+19. Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества.
+
+
 - Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation.
-
-  
-
 - Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression.
 - Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network.
 - One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества.

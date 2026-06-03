@@ -19,7 +19,7 @@ How do you decide what type of transfer learning you should perform on a new dat
 4. **New dataset is large and very different from the original dataset.**
    *Since the dataset is very large, we may expect that we can afford to train a ConvNet from scratch. However, in practice it is very often still beneficial to initialize with weights from a pretrained model. In this case, we would have enough data and confidence to fine-tune through the entire network.*
 
+[Практика](https://docs.pytorch.org/tutorials/beginner/transfer_learning_tutorial.html)
 
-   
 FPN
 

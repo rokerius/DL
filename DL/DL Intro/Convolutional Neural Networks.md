@@ -1,4 +1,4 @@
-[cs231 book](https://cs231n.github.io/convolutional-networks/) [# Andrej Karpathy lecture](https://www.youtube.com/watch?v=u6aEYuemt0M)
+[cs231 book](https://cs231n.github.io/convolutional-networks/) [Andrej Karpathy lecture](https://www.youtube.com/watch?v=u6aEYuemt0M)
 
 ConvNet architectures make the explicit assumption that the inputs are images, which allows us to encode certain properties into the architecture. These then make the forward function more efficient to implement and vastly reduce the amount of parameters in the network.
 
@@ -34,7 +34,7 @@ We have explained the connectivity of each neuron in the Conv Layer to the input
 
 1. First, the **depth** of the output volume is a hyperparameter: it corresponds to the number of filters(=kernels) we would like to use, each learning to look for something different in the input. For example, if the first Convolutional Layer takes as input the raw image, then different neurons along the depth dimension may activate in presence of various oriented edges, or blobs of color.
 2. Second, we must specify the **stride** with which we slide the filter. When the stride is 1 then we move the filters one pixel at a time и тд.
-3. As we will soon see, sometimes it will be convenient to pad the input volume with zeros around the border. The size of this **zero-padding** is a hyperparameter. The nice feature of zero padding is that it will allow us to control the spatial size of the output volumes
+3. As we will soon see, sometimes it will be convenient to pad the input volume with zeros around the border. The size of this **zero-padding** is a hyperparameter. The nice feature of zero padding is that it will allow us to control the spatial size of the output volumes. Но обычно заполняют не нулями
 
 We can compute the spatial size of the output volume as a function of the input volume size (W), the receptive field size of the Conv Layer neurons (F), the stride with which they are applied (S), and the amount of zero padding used (P) on the border. The correct formula for calculating how many neurons “fit” is given by (W−F+2P)/S+1. For example for a 7x7 input and a 3x3 filter with stride 1 and pad 0 we would get a 5x5 output. With stride 2 we would get a 3x3 output. Lets also see one more graphical example: (S = 1 и S = 2)
 
@@ -56,6 +56,7 @@ We can compute the spatial size of the output volume as a function of the input 
 - In the output volume, the d-th depth slice (of size W2×H2) is the result of performing a valid convolution of the d-th filter over the input volume with a stride of S, and then offset by d-th bias.
 
 ![[conv_demo.gif]]
+![[Снимок экрана 2026-06-03 в 22.38.48.png|381]]
 
 - **Локальность** - нейрон в свёрточном слое смотрит не на всё изображение, а только на маленький участок, например 3×3 или 5×5. Это позволяет искать локальные признаки: края, углы, текстуры.
 - **Разделение весов / weight sharing** - один и тот же фильтр применяется ко всем позициям входа. Благодаря этому сеть ищет один и тот же признак в разных местах изображения и использует намного меньше параметров.
