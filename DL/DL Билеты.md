@@ -31,11 +31,12 @@
 18. Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются.
 19. Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества.
 
+**Object Detection** [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FObject%20Detection)
+20. Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation.
+21. Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression.
+22. Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network.
+23. One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества.
 
-- Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation.
-- Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression.
-- Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network.
-- One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества.
 - Knowledge distillation. Teacher-student схема, soft labels, temperature, KL-divergence, зачем нужна дистилляция.
 - Варианты и применения дистилляции. Дистилляция логитов, признаков, attention, online/offline/self-distillation, dataset distillation.
 - Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA.
