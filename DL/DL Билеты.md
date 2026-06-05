@@ -45,14 +45,17 @@
 26. Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA.
 27. Word2Vec и GloVe. Skip-gram, CBOW, negative sampling, интерпретация embedding space, аналогии и косинусная близость.
 
-- Рекуррентные нейронные сети. Последовательные данные, hidden state, parameter sharing, BPTT, many-to-one/many-to-many задачи.
-- Проблемы RNN и gated-архитектуры. Vanishing/exploding gradients, LSTM, GRU, teacher forcing, scheduled sampling. 
-- Seq2seq и attention до трансформеров. Encoder-decoder, bottleneck одного вектора, attention для машинного перевода.
+#### Recursive Neural Network [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FNLP%2FRecursive%20Neural%20Network)
+28. Рекуррентные нейронные сети. Последовательные данные, hidden state, parameter sharing, BPTT, many-to-one/many-to-many задачи.
+29. Проблемы RNN и gated-архитектуры. Vanishing/exploding gradients, LSTM, GRU, teacher forcing, scheduled sampling. 
+30. Seq2seq и attention до трансформеров. Encoder-decoder, bottleneck одного вектора, attention для машинного перевода.
+
 - Токенизация текста. Word-level, char-level, subword, Unicode/UTF-8, BPE, WordPiece, byte-level BPE.
 - Механизм внимания. Query, Key, Value, scaled dot-product attention, multi-head attention.
 - Архитектура Transformer. Self-attention, masked attention, cross-attention, FFN, residual connections, LayerNorm, positional encoding.
 - Pretraining в NLP. Зачем нужен self-supervised pretraining, encoder-only, encoder-decoder и decoder-only подходы.
 - BERT-подобные и T5-подобные модели. Masked language modeling, text-to-text постановка, fine-tuning под downstream tasks.
+
 - GPT-подобные модели. Autoregressive generation, next-token prediction, decoder-only архитектура, in-context learning.
 - Масштабирование трансформеров и MoE. Scaling laws, compute/data/model size, sparse experts, router, балансировка экспертов.
 - Дообучение LLM. Full fine-tuning, supervised fine-tuning, instruction tuning, PEFT, adapters, LoRA, prefix/prompt tuning.
