@@ -31,16 +31,20 @@
 18. Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются.
 19. Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества.
 
-**Object Detection** [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FObject%20Detection)
+#### Object Detection [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FObject%20Detection)
 20. Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation.
 21. Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression.
 22. Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network.
 23. One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества.
 
-- Knowledge distillation. Teacher-student схема, soft labels, temperature, KL-divergence, зачем нужна дистилляция.
-- Варианты и применения дистилляции. Дистилляция логитов, признаков, attention, online/offline/self-distillation, dataset distillation.
-- Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA.
-- Word2Vec и GloVe. Skip-gram, CBOW, negative sampling, интерпретация embedding space, аналогии и косинусная близость.
+#### Knowledge Distillation [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FKnowledge%20Distillation)
+24. Knowledge distillation. Teacher-student схема, soft labels, temperature, KL-divergence, зачем нужна дистилляция.
+25. Варианты и применения дистилляции. Дистилляция логитов, признаков, attention, online/offline/self-distillation, dataset distillation.
+
+#### Векторные представления слов [тык](obsidian://open?vault=DL&file=%D0%92%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D0%BB%D0%BE%D0%B2)
+26. Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA.
+27. Word2Vec и GloVe. Skip-gram, CBOW, negative sampling, интерпретация embedding space, аналогии и косинусная близость.
+
 - Рекуррентные нейронные сети. Последовательные данные, hidden state, parameter sharing, BPTT, many-to-one/many-to-many задачи.
 - Проблемы RNN и gated-архитектуры. Vanishing/exploding gradients, LSTM, GRU, teacher forcing, scheduled sampling. 
 - Seq2seq и attention до трансформеров. Encoder-decoder, bottleneck одного вектора, attention для машинного перевода.
