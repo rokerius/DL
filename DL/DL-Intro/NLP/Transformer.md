@@ -21,7 +21,7 @@ Value условно связаны с Key. Чтобы обновить эмбе
 - $W_E$ - матрица эмбеддингов,
 - $Q=XW_Q,\ K=XW_K,\ V=XW_V$ 
 - $S=\frac{QK^{\top}}{\sqrt{d_k}},\ A=\operatorname{softmax}(S),$ 
-- $\operatorname{Attention}(Q,K,V)=AV=\operatorname{softmax}!\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V,$
+- $\operatorname{Attention}(Q,K,V)=AV=\operatorname{softmax}\left(\frac{QK^{\top}}{\sqrt{d_k}}\right)V,$
 
 Таких слоев мы используем много и получается **Multi-head attention**, где для каждого head свои три матрицы W:
 
@@ -32,6 +32,8 @@ $\substack{\text{Original}\\{embedding}}\quad \boxed{\vec{E}_i}+\Delta\vec{E}_i^
 Так мы даем модели возможность узнать лучше как контекст может поменять смысл слов.
 Помните я упоминал скелетное разложение матрицы Value? Отказываемся от этой идеи, будем в некую output matrix запихивать левую часть разложения (Value Up), а когда мы ссылаемся на матрицу Value для отдельной head of attention, будем иметь ввиду правую часть (Value Down).
 
+- **Attention (cross-attention)** — общий механизм, который позволяет модели определить, на какие элементы входных данных обратить больше внимания.  $Q = YW_Q,\quad K = XW_K,\quad V = XW_V$
+- **Self-attention** — частный случай attention, где запросы, ключи и значения берутся из одной и той же последовательности. Этот пример и разобран выше
 
 ## Transformer
 [3Blue1Brown](https://www.youtube.com/watch?v=wjZofJX0v4M&list=PLZHQObOWTQDM4E-dwvbnQTiyKDO-y9T2t&index=4)
@@ -48,4 +50,19 @@ High-Level Architecture:
 
 Данные многократно перемещаются между блоками Attention и MLP, в итоге в последнем векторе получим распределение вероятностей.
 
-В целом этого должно хватить.
+Обрати внимание на **residual connections**, они улучшают протекание градиента и сохраняем полезную часть старого предсказания.
+
+![[Pasted image 20260608212901.png|299]]![[Pasted image 20260608213007.png|395]]
+
+**Layer Normalization** нормализует значения признаков внутри одного объекта — например, внутри одного токена.
+- $\operatorname{LayerNorm}(x)=\gamma\odot\frac{x-\mu}{\sqrt{\sigma^2+\epsilon}}+\beta$
+
+**Positional encoding** — это способ сообщить Transformer’у порядок элементов в последовательности. 
+- Синусоидальный encoding — позиции задаются через функции `sin` и `cos`; не требует обучения.
+- Обучаемый encoding — для каждой позиции модель учит отдельный вектор.
+- Относительный encoding — кодирует не абсолютную позицию токена, а расстояние между токенами.
+- Современные варианты: RoPE и ALiBi
+
+
+
+
