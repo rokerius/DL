@@ -1,20 +1,20 @@
-#### Нейросети [тык](/Users/rokerius/Obsidian/Study/Study/DL/DL Intro/Neural Networks.md)
+#### Нейросети [тык](DL-Intro/Neural_Networks)
 1. Введение в Deep Learning. Чем глубокое обучение отличается от классического ML, зачем нужны нейросети, какие типы данных и задач они хорошо обрабатывают.
 2. Нейронная сеть как композиция функций. Линейный слой, bias, функции активации, глубина, нелинейность, softmax.
 3. Обучение нейронной сети. Функция потерь, эмпирический риск, mini-batch training, train/validation/test split.
 4. Backpropagation и автоматическое дифференцирование. Вычислительный граф, правило цепочки, forward-mode и reverse-mode autodiff.
-#### Оптимизаторы [тык](/Users/rokerius/Obsidian/Study/Study/Convex Optimization/Оптимизаторы. DL Intro.md)
+#### Оптимизаторы [тык](Convex_Optimization/optimizers)
 5. Оптимизация в DL. Gradient descent, SGD, Momentum, Nesterov, RMSProp, Adam/AdamW, роль learning rate.
 
 6. Стабилизация и регуляризация обучения. Инициализация, нормализация, dropout, weight decay, early stopping, data augmentation.
 
-#### PyTorch [тык](obsidian://open?vault=Study&file=DL%2FDL%20Intro%2FPyTorch)
+#### PyTorch [тык](DL/DL Билеты)
 7. Практический PyTorch-пайплайн. Tensor, autograd, nn.Module, Dataset, DataLoader, train/eval.
 
-#### Нейросети (в конце) [тык](/Users/rokerius/Obsidian/Study/Study/DL/DL Intro/Neural Networks.md)
+#### Нейросети (в конце) [тык](DL-Intro/Neural_Networks)
 8. Диагностика обучения нейросети. Переобучение, leakage, tiny-overfit test, анализ train/validation curves, подбор гиперпараметров.
 
-#### CNN [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FConvolutional%20Neural%20Networks)
+#### CNN [тык](DL/DL-Intro/CV/CNN)
 9. Изображение как тензор и мотивация CNN. Почему полносвязная сеть плохо использует структуру изображения.
 10. Операция свёртки. Локальность, разделение весов, padding, stride, dilation, receptive field.
 11. Базовая CNN для классификации изображений. Feature maps, conv, pooling, classifier head.
@@ -22,37 +22,41 @@
 13. Классические CNN-архитектуры. LeNet, AlexNet, VGG, Inception: как развивались идеи глубины, свёрток и feature extraction.
 14. ResNet и современные CNN-backbone. Skip connections, residual block, bottleneck, **идеи эффективных архитектур**.
 
-#### Transfer Learning [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FTransfer%20Learning)
+#### Transfer Learning [тык](DL/DL-Intro/CV/Transfer_Learning)
 15. Transfer learning в компьютерном зрении. Feature extraction, fine-tuning, заморозка слоёв, использование предобученных backbone.
 
-#### Semantic Segmentation [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FSemantic%20segmentation)
+#### Semantic Segmentation [тык](DL/DL-Intro/CV/Semantic_Segmentation)
 16. Семантическая сегментация. Постановка задачи, отличие от классификации, superpixels, FCN, encoder-decoder подход.
 17. U-Net и современные подходы к сегментации. Skip connections, upsampling, multi-scale features, transformer/promptable segmentation как расширения.
 18. Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются.
 19. Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества.
 
-#### Object Detection [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FObject%20Detection)
+#### Object Detection [тык](DL/DL-Intro/CV/Object_Detection)
 20. Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation.
 21. Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression.
 22. Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network.
 23. One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества.
 
-#### Knowledge Distillation [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FKnowledge%20Distillation)
+#### Knowledge Distillation [тык](DL/DL-Intro/CV/Knowledge_Distillation)
 24. Knowledge distillation. Teacher-student схема, soft labels, temperature, KL-divergence, зачем нужна дистилляция.
 25. Варианты и применения дистилляции. Дистилляция логитов, признаков, attention, online/offline/self-distillation, dataset distillation.
 
-#### Векторные представления слов [тык](obsidian://open?vault=DL&file=%D0%92%D0%B5%D0%BA%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B5%20%D0%BF%D1%80%D0%B5%D0%B4%D1%81%D1%82%D0%B0%D0%B2%D0%BB%D0%B5%D0%BD%D0%B8%D1%8F%20%D1%81%D0%BB%D0%BE%D0%B2)
+#### Векторные представления слов [тык](DL/DL-Intro/NLP/word2vec)
 26. Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA.
 27. Word2Vec и GloVe. Skip-gram, CBOW, negative sampling, интерпретация embedding space, аналогии и косинусная близость.
 
-#### Recursive Neural Network [тык](obsidian://open?vault=DL&file=DL%2FDL%20Intro%2FNLP%2FRecursive%20Neural%20Network)
+#### Recursive Neural Network [тык](DL/DL-Intro/NLP/RNN)
 28. Рекуррентные нейронные сети. Последовательные данные, hidden state, parameter sharing, BPTT, many-to-one/many-to-many задачи.
 29. Проблемы RNN и gated-архитектуры. Vanishing/exploding gradients, LSTM, GRU, teacher forcing, scheduled sampling. 
 30. Seq2seq и attention до трансформеров. Encoder-decoder, bottleneck одного вектора, attention для машинного перевода.
 
-- Токенизация текста. Word-level, char-level, subword, Unicode/UTF-8, BPE, WordPiece, byte-level BPE.
-- Механизм внимания. Query, Key, Value, scaled dot-product attention, multi-head attention.
-- Архитектура Transformer. Self-attention, masked attention, cross-attention, FFN, residual connections, LayerNorm, positional encoding.
+#### Tokenization [тык](DL/DL-Intro/NLP/Tokenization)
+31. Токенизация текста. Word-level, char-level, subword, Unicode/UTF-8, BPE, WordPiece, byte-level BPE.
+
+#### Transformer [тык](DL/DL-Intro/NLP/Transformer)
+31. Механизм внимания. Query, Key, Value, scaled dot-product attention, multi-head attention
+32. Архитектура Transformer. Self-attention, masked attention, cross-attention, FFN, residual connections, LayerNorm, positional encoding.
+
 - Pretraining в NLP. Зачем нужен self-supervised pretraining, encoder-only, encoder-decoder и decoder-only подходы.
 - BERT-подобные и T5-подобные модели. Masked language modeling, text-to-text постановка, fine-tuning под downstream tasks.
 
