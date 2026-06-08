@@ -8,7 +8,7 @@ Regular Neural Nets don’t scale well to full images. In CIFAR-10, images are o
 
 3D volumes of neurons. Convolutional Neural Networks take advantage of the fact that the input consists of images and they constrain the architecture in a more sensible way. In particular, unlike a regular Neural Network, the layers of a ConvNet have neurons arranged in 3 dimensions: width, height, depth.
 
-![[Pasted image 20260601203656.png|272]]![[Pasted image 20260601203711.png|376]]
+<img src="../attachments/Pasted%20image%2020260601203656.png" width="272"><img src="../attachments/Pasted%20image%2020260601203711.png" width="376">
 >A ConvNet is made up of Layers. Every Layer has a simple API: It transforms an input 3D volume to an output 3D volume with some differentiable function that may or may not have parameters.
 
 ### Layers used to build ConvNets
@@ -28,7 +28,7 @@ Example Architecture: ConvNet for CIFAR-10 classification could have the archite
 
 _Example 1_. For example, suppose that the input volume has size [32x32x3], (e.g. an RGB CIFAR-10 image). If the receptive field (or the filter size) is 5x5, then each neuron in the Conv Layer will have weights to a [5x5x3] region in the input volume, for a total of 75 + 1 weights. Notice that the extent of the connectivity along the depth axis must be 3, since this is the depth of the input volume.
 
-![[Pasted image 20260601210054.png|266]]![[Pasted image 20260601210102.png|316]]
+<img src="../attachments/Pasted%20image%2020260601210054.png" width="266"><img src="../attachments/Pasted%20image%2020260601210102.png" width="316">
 
 We have explained the connectivity of each neuron in the Conv Layer to the input volume, but we haven’t yet discussed how many neurons there are in the output volume or how they are arranged. Three hyperparameters control the size of the output volume: the **depth, stride** and **zero-padding**.
 
@@ -38,7 +38,7 @@ We have explained the connectivity of each neuron in the Conv Layer to the input
 
 We can compute the spatial size of the output volume as a function of the input volume size (W), the receptive field size of the Conv Layer neurons (F), the stride with which they are applied (S), and the amount of zero padding used (P) on the border. The correct formula for calculating how many neurons “fit” is given by (W−F+2P)/S+1. For example for a 7x7 input and a 3x3 filter with stride 1 and pad 0 we would get a 5x5 output. With stride 2 we would get a 3x3 output. Lets also see one more graphical example: (S = 1 и S = 2)
 
-![[Pasted image 20260601210943.png]]
+![](../attachments/Pasted%20image%2020260601210943.png)
 
 **Summary**. To summarize, the Conv Layer:
 
@@ -55,7 +55,7 @@ We can compute the spatial size of the output volume as a function of the input 
 - With parameter sharing, it introduces F⋅F⋅D1 weights per filter, for a total of (F⋅F⋅D1)⋅K weights and K biases.
 - In the output volume, the d-th depth slice (of size W2×H2) is the result of performing a valid convolution of the d-th filter over the input volume with a stride of S, and then offset by d-th bias.
 
-![[conv_demo.gif]]
+![](../attachments/conv_demo.gif)
 
 - **Локальность** - нейрон в свёрточном слое смотрит не на всё изображение, а только на маленький участок, например 3×3 или 5×5. Это позволяет искать локальные признаки: края, углы, текстуры.
 - **Разделение весов / weight sharing** - один и тот же фильтр применяется ко всем позициям входа. Благодаря этому сеть ищет один и тот же признак в разных местах изображения и использует намного меньше параметров.
@@ -67,7 +67,7 @@ We can compute the spatial size of the output volume as a function of the input 
 **1x1 convolution** - это свёртка с ядром размером 1×1, которая обрабатывает каждый пиксель отдельно, но смешивает информацию между каналами. Её часто используют, чтобы уменьшить или увеличить число каналов, например из 256 сделать 64, не меняя высоту и ширину карты признаков.
 
 **Depthwise convolution** и **depthwise-separable convolution**: [6-минутное объяснение](https://www.youtube.com/watch?v=vVaRhZXovbw)
-![[Снимок экрана 2026-06-02 в 14.17.32.png|333]]![[Снимок экрана 2026-06-02 в 14.19.09.png|339]]
+<img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-02%20%D0%B2%2014.17.32.png" width="333"><img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-02%20%D0%B2%2014.19.09.png" width="339">
 depthwise-separable = depthwise + 1x1
 
 **Transposed convolution**: [7-минутное объяснение, но поймете за первые 3](https://www.youtube.com/watch?v=qb4nRoEAASA)
@@ -90,7 +90,7 @@ More generally, the pooling layer:
 
 Обычно используется MAX, но можно среднее или L2-норма
 
-![[Pasted image 20260602131158.png|248]]![[Pasted image 20260602131205.png|401]]
+<img src="../attachments/Pasted%20image%2020260602131158.png" width="248"><img src="../attachments/Pasted%20image%2020260602131205.png" width="401">
 
 ### ConvNet Architectures
 
@@ -112,8 +112,8 @@ The **pool layers** are in charge of downsampling the spatial dimensions of th
 
 #### LeNet 
 The first successful applications of Convolutional Networks were developed by Yann LeCun in 1990’s. Of these, the best known is the [LeNet](http://yann.lecun.com/exdb/publis/pdf/lecun-98.pdf) architecture that was used to read zip codes, digits, etc.
-![[Снимок экрана 2026-06-02 в 14.33.57.png]]
-![[Pasted image 20260602145054.png|448]]
+![](../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-02%20%D0%B2%2014.33.57.png)
+<img src="../attachments/Pasted%20image%2020260602145054.png" width="448">
 
 ```python
 class LeNet(nn.Module):  
@@ -157,7 +157,7 @@ def forward(self, x):
 
 #### AlexNet
 The AlexNet was submitted to the [ImageNet ILSVRC challenge](http://www.image-net.org/challenges/LSVRC/2014/) in 2012 and significantly outperformed the second runner-up. The Network had a very similar architecture to LeNet, but was deeper, bigger, and featured Convolutional Layers stacked on top of each other (previously it was common to only have a single CONV layer always immediately followed by a POOL layer). Была использована ReLU, аугментация, а еще это первый перенос на GPU, первое использование dropout. 
-![[Снимок экрана 2026-06-02 в 15.19.25.png]]
+![](../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-02%20%D0%B2%2015.19.25.png)
 >*Изображение → Conv → Pool → Conv → Pool → Conv → Conv → 
 >		→ Conv → Pool → FC → FC → FC → Класс*
 
@@ -165,7 +165,7 @@ The AlexNet was submitted to the [ImageNet ILSVRC challenge](http://www.image-n
 
 #### VGGNet
 The runner-up in ILSVRC 2014 was the network from Karen Simonyan and Andrew Zisserman that became known as the [VGGNet](http://www.robots.ox.ac.uk/~vgg/research/very_deep/). Its main contribution was in showing that the depth of the network is a critical component for good performance. Использовала только фильтры 3x3, stride = 1 и pooling 2x2. Очень простая и однородная архитектура.
-![[Pasted image 20260602154029.png|543]]![[Pasted image 20260602154145.png|144]]
+<img src="../attachments/Pasted%20image%2020260602154029.png" width="543"><img src="../attachments/Pasted%20image%2020260602154145.png" width="144">
 A downside of the VGGNet is that it is more expensive to evaluate and uses a lot more memory and parameters (140M)
  
 #### Inception
@@ -174,7 +174,7 @@ Inception - это семейство архитектур CNN. Самая из�
 **GoogLeNet**'s main contribution was the development of an _Inception Module_ that dramatically reduced the number of parameters in the network (4M, compared to AlexNet with 60M). Additionally, this paper uses Average Pooling instead of Fully Connected layers at the top of the ConvNet, eliminating a large amount of parameters that do not seem to matter much. There are also several followup versions to the GoogLeNet, most recently [Inception-v4](http://arxiv.org/abs/1602.07261).
 
 Модуль Inception:
-![[Pasted image 20260602170342.png|538]]
+<img src="../attachments/Pasted%20image%2020260602170342.png" width="538">
 На первый взгляд, это параллельная комбинация свёрточных фильтров 1х1, 3х3 и 5х5. Но изюминка заключалась в использовании свёрточных блоков 1х1 (NiN) для уменьшения количества свойств перед подачей в «дорогие» параллельные блоки.
 
 LeNet заложил базовую схему CNN - свёртки, pooling и классификатор, AlexNet показал силу глубоких сетей на GPU и ReLU, VGG систематизировала идею увеличения глубины через маленькие 3×3 свёртки. Inception развила feature extraction шире: параллельные свёртки разных масштабов позволили извлекать признаки разной сложности эффективнее, чем просто наращивать глубину.
@@ -187,7 +187,7 @@ LeNet заложил базовую схему CNN - свёртки, pooling и 
 	- Skip connections позволяют пропускать информацию через один или несколько слоев. Эти связи позволяют передавать прямую информацию от одного слоя к следующему, минуя промежуточные слои, что помогает избежать затухания градиента и улучшает обучение очень глубоких сетей.
 - **Residual Blocks**
 	- Основным строительным блоком ResNet является резидуальный блок. Этот блок включает в себя несколько сверточных слоев с функцией активации ReLU, к которым добавляется прямое соединение, проходящее через весь блок
-![[Pasted image 20260602172144.png|333]]
+<img src="../attachments/Pasted%20image%2020260602172144.png" width="333">
 ResNet позволила строить сети с очень большим числом слоев, например, ResNet-50, ResNet-101 и ResNet-152 (и другие модификации), где цифры обозначают количество слоев в сети. Эти сети значительно глубже, чем предыдущие архитектуры, такие как VGG, и при этом обучаются эффективно благодаря резидуальным связям
 
 **Сокращенные резидуальные блоки (Bottleneck Blocks)**

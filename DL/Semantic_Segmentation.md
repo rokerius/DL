@@ -1,15 +1,15 @@
 Это задача компьютерного зрения, где каждому пикселю изображения присваивается класс объекта или область.
-![[Снимок экрана 2026-06-03 в 17.41.16.png|163]]![[Снимок экрана 2026-06-03 в 17.41.47.png|162]]![[Снимок экрана 2026-06-03 в 17.42.30.png|158]]![[Снимок экрана 2026-06-03 в 17.43.02.png|160]]
+<img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2017.41.16.png" width="163"><img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2017.41.47.png" width="162"><img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2017.42.30.png" width="158"><img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2017.43.02.png" width="160">
 **Очевидный подход:** скользящим окном проходить и каждый раз запускать CNN (очевидно плохо)
 **Convolutions End-to-End:** через Conv слои, но это дорого, оставляя размер таким же
-![[Снимок экрана 2026-06-03 в 18.05.47.png]]
+![](../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2018.05.47.png)
 **Fully Convolutional Nets:** состоят только из conv слоёв без fully connected слоёв, уменьшаем изображение, но как увеличить?
-![[Снимок экрана 2026-06-03 в 18.11.21.png|394]]![[Снимок экрана 2026-06-03 в 18.14.11.png|203]]
+<img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2018.11.21.png" width="394"><img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2018.14.11.png" width="203">
 
 - *Bilinear Interpolation:* просто размываем, есть также cubic, bicubic, 2D-NN, 1D-NN
 
 - *Deconvolution* (Transposed convolution из конспекта по CNN): [объяснение](https://www.youtube.com/watch?v=qb4nRoEAASA)
-	 ![[Снимок экрана 2026-06-03 в 18.22.51.png]]
+	 ![](../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2018.22.51.png)
 	- Так расширение изображения происходит за счет обучения, в целом так получается *encoder-decoder подход*.
 
 ### U-Net
@@ -17,7 +17,7 @@ Combines all of the previous improvements but adds skip-connections between reso
 
 **skip-connections** - это связи в нейросети, которые “перепрыгивают” через один или несколько слоёв и передают входной сигнал дальше напрямую (восстанавливаем информацию потерянную при pooling)
 
- ![[Снимок экрана 2026-06-03 в 18.32.32.png|541]]
+ <img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2018.32.32.png" width="541">
  [подробное объяснение](https://www.youtube.com/watch?v=oxcgx75k6yU)
  
 **Multi-scale features** - это признаки, извлечённые на разных масштабах/разрешениях, чтобы модель одновременно учитывала мелкие детали и крупный контекст изображения.
@@ -27,7 +27,7 @@ Combines all of the previous improvements but adds skip-connections between reso
 - encoder на ResNet,
 - skip connections через сложение (summation),
 - компактные decoder‑блоки.
-![[Pasted image 20260603185924.png|603]]
+<img src="../attachments/Pasted%20image%2020260603185924.png" width="603">
 
 ### Transformer-based segmentation
 Vision Transformer [супер подробно](https://www.youtube.com/watch?v=rdIySBWpCHc)
@@ -55,7 +55,7 @@ Vision Transformer [супер подробно](https://www.youtube.com/watch?v
 	- $L_{\mathrm{CE}} = -\frac{1}{|\Omega|} \sum_{i \in \Omega} \log p_{i,y_i}.$
 
 - *Intersection over Union (IoU):*
-	- ![[Снимок экрана 2026-06-03 в 19.16.14.png|198]]
+	- <img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-03%20%D0%B2%2019.16.14.png" width="198">
 	- $\mathrm{IoU}_c = \frac{TP_c}{TP_c + FP_c + FN_c}$
 	- $\mathrm{mIoU} = \frac{1}{C} \sum_{c=1}^{C} \mathrm{IoU}_c$
 

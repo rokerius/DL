@@ -5,41 +5,41 @@
 ## Список вопросов к устному экзамену
 
 1. Введение в Deep Learning. Чем глубокое обучение отличается от классического ML, зачем нужны нейросети, какие типы данных и задач они хорошо обрабатывают.
-2. Нейронная сеть как композиция функций. Линейный слой, bias, функции активации, глубина, нелинейность, softmax. [[Neural_Networks]]
-3. Обучение нейронной сети. Функция потерь, эмпирический риск, mini-batch training, train/validation/test split. [[Neural_Networks]]
-4. Backpropagation и автоматическое дифференцирование. Вычислительный граф, правило цепочки, forward-mode и reverse-mode autodiff. [[Neural_Networks]]
-5. Оптимизация в DL. Gradient descent, SGD, Momentum, Nesterov, RMSProp, Adam/AdamW, роль learning rate. [[Neural_Networks]] [[optimizers]]
-6. Стабилизация и регуляризация обучения. Инициализация, нормализация, dropout, weight decay, early stopping, data augmentation. [[Neural_Networks]]
-7. Практический PyTorch-пайплайн. Tensor, autograd, nn.Module, Dataset, DataLoader, train/eval. [[PyTorch]]
-8. Диагностика обучения нейросети. Переобучение, tiny-overfit test, анализ train/validation curves, leakage, подбор гиперпараметров. [[Neural_Networks]]
-9. Изображение как тензор и мотивация CNN. Почему полносвязная сеть плохо использует структуру изображения. [[CNN]]
-10. Операция свертки. Локальность, разделение весов, padding, stride, receptive field, dilation. [[CNN]]
-11. Базовая CNN для классификации изображений. Feature maps, conv, pooling, classifier head. [[CNN]]
-12. Виды сверток и эффективные операции. 1x1 convolution, separable/depthwise convolution, transposed convolution. [[CNN]]
-13. Классические CNN-архитектуры. LeNet, AlexNet, VGG, Inception: как развивались идеи глубины, сверток и feature extraction. [[CNN]]
-14. ResNet и современные CNN-backbone. Skip connections, residual block, bottleneck, идеи эффективных архитектур. [[CNN]]
-15. Transfer learning в компьютерном зрении. Feature extraction, fine-tuning, заморозка слоев, использование предобученных backbone. [[Transfer_Learning]]
-16. Семантическая сегментация. Постановка задачи, отличие от классификации, FCN, encoder-decoder подход, superpixels. [[Semantic_Segmentation]]
-17. U-Net и современные подходы к сегментации. Skip connections, upsampling, multiscale features, transformer/promptable segmentation как расширения. [[Semantic_Segmentation]]
-18. Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются. [[Semantic_Segmentation]]
-19. Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества. [[Semantic_Segmentation]]
-20. Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation. [[Object_Detection]]
-21. Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression. [[Object_Detection]]
-22. Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network. [[Object_Detection]]
-23. One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества. [[Object_Detection]]
-24. Knowledge distillation. Teacher-student схема, soft labels, temperature, KL-divergence, зачем нужна дистилляция. [[Knowledge_Distillation]]
-25. Варианты и применения дистилляции. Дистилляция логитов, признаков и attention, online/offline/self-distillation, dataset distillation. [[Knowledge_Distillation]]
-26. Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA. [[word2vec]]
-27. Word2Vec и GloVe. Skip-gram, CBOW, negative sampling, интерпретация embedding space, аналогии и косинусная близость. [[word2vec]]
-28. Рекуррентные нейронные сети. Последовательные данные, hidden state, parameter sharing, BPTT, many-to-one/many-to-many задачи. [[RNN]]
-29. Проблемы RNN и gated-архитектуры. Vanishing/exploding gradients, LSTM, GRU, teacher forcing, scheduled sampling. [[RNN]]
-30. Seq2seq и attention до трансформеров. Encoder-decoder, bottleneck одного вектора, attention для машинного перевода. [[RNN]]
-31. Токенизация текста. Word-level, char-level, subword, BPE, WordPiece, byte-level BPE, Unicode/UTF-8. [[Tokenization]]
-32. Механизм внимания. Query, Key, Value, scaled dot-product attention, multi-head attention. [[Transformer]]
-33. Архитектура Transformer. Self-attention, masked attention, cross-attention, FFN, residual connections, LayerNorm, positional encoding. [[Transformer]]
-34. Pretraining в NLP. Зачем нужен self-supervised pretraining, encoder-only, encoder-decoder и decoder-only подходы. [[Pretraining в NLP]]
-35. BERT-подобные и T5-подобные модели. Masked language modeling, text-to-text постановка, fine-tuning под downstream tasks. [[Pretraining в NLP]]
-36. GPT-подобные модели. Autoregressive generation, next-token prediction, decoder-only архитектура, in-context learning. [[Pretraining в NLP]]
+2. Нейронная сеть как композиция функций. Линейный слой, bias, функции активации, глубина, нелинейность, softmax. [Neural_Networks](DL/Neural_Networks.md)
+3. Обучение нейронной сети. Функция потерь, эмпирический риск, mini-batch training, train/validation/test split. [Neural_Networks](DL/Neural_Networks.md)
+4. Backpropagation и автоматическое дифференцирование. Вычислительный граф, правило цепочки, forward-mode и reverse-mode autodiff. [Neural_Networks](DL/Neural_Networks.md)
+5. Оптимизация в DL. Gradient descent, SGD, Momentum, Nesterov, RMSProp, Adam/AdamW, роль learning rate. [Neural_Networks](DL/Neural_Networks.md) [optimizers](DL/optimizers.md)
+6. Стабилизация и регуляризация обучения. Инициализация, нормализация, dropout, weight decay, early stopping, data augmentation. [Neural_Networks](DL/Neural_Networks.md)
+7. Практический PyTorch-пайплайн. Tensor, autograd, nn.Module, Dataset, DataLoader, train/eval. [PyTorch](DL/PyTorch.md)
+8. Диагностика обучения нейросети. Переобучение, tiny-overfit test, анализ train/validation curves, leakage, подбор гиперпараметров. [Neural_Networks](DL/Neural_Networks.md)
+9. Изображение как тензор и мотивация CNN. Почему полносвязная сеть плохо использует структуру изображения. [CNN](DL/CNN.md)
+10. Операция свертки. Локальность, разделение весов, padding, stride, receptive field, dilation. [CNN](DL/CNN.md)
+11. Базовая CNN для классификации изображений. Feature maps, conv, pooling, classifier head. [CNN](DL/CNN.md)
+12. Виды сверток и эффективные операции. 1x1 convolution, separable/depthwise convolution, transposed convolution. [CNN](DL/CNN.md)
+13. Классические CNN-архитектуры. LeNet, AlexNet, VGG, Inception: как развивались идеи глубины, сверток и feature extraction. [CNN](DL/CNN.md)
+14. ResNet и современные CNN-backbone. Skip connections, residual block, bottleneck, идеи эффективных архитектур. [CNN](DL/CNN.md)
+15. Transfer learning в компьютерном зрении. Feature extraction, fine-tuning, заморозка слоев, использование предобученных backbone. [Transfer_Learning](DL/Transfer_Learning.md)
+16. Семантическая сегментация. Постановка задачи, отличие от классификации, FCN, encoder-decoder подход, superpixels. [Semantic_Segmentation](DL/Semantic_Segmentation.md)
+17. U-Net и современные подходы к сегментации. Skip connections, upsampling, multiscale features, transformer/promptable segmentation как расширения. [Semantic_Segmentation](DL/Semantic_Segmentation.md)
+18. Instance, panoptic segmentation и human pose estimation. Чем эти задачи отличаются от semantic segmentation, какие идеи используются. [Semantic_Segmentation](DL/Semantic_Segmentation.md)
+19. Метрики и функции потерь в сегментации. Pixel-wise cross-entropy, IoU/mIoU, Dice/F1, особенности оценки качества. [Semantic_Segmentation](DL/Semantic_Segmentation.md)
+20. Object detection. Постановка задачи, bounding boxes, confidence, IoU, отличие detection от classification и segmentation. [Object_Detection](DL/Object_Detection.md)
+21. Метрики и post-processing в детекции. Precision/recall, AP/mAP, Non-Maximum Suppression. [Object_Detection](DL/Object_Detection.md)
+22. Two-stage object detection. Sliding window, R-CNN, Fast R-CNN, Faster R-CNN, Region Proposal Network. [Object_Detection](DL/Object_Detection.md)
+23. One-stage object detection. YOLO, SSD, RetinaNet, anchors, anchor-free идеи, trade-off скорости и качества. [Object_Detection](DL/Object_Detection.md)
+24. Knowledge distillation. Teacher-student схема, soft labels, temperature, KL-divergence, зачем нужна дистилляция. [Knowledge_Distillation](DL/Knowledge_Distillation.md)
+25. Варианты и применения дистилляции. Дистилляция логитов, признаков и attention, online/offline/self-distillation, dataset distillation. [Knowledge_Distillation](DL/Knowledge_Distillation.md)
+26. Векторные представления слов. One-hot, distributional hypothesis, count-based embeddings, co-occurrence matrix, PMI/PPMI, LSA. [word2vec](DL/word2vec.md)
+27. Word2Vec и GloVe. Skip-gram, CBOW, negative sampling, интерпретация embedding space, аналогии и косинусная близость. [word2vec](DL/word2vec.md)
+28. Рекуррентные нейронные сети. Последовательные данные, hidden state, parameter sharing, BPTT, many-to-one/many-to-many задачи. [RNN](DL/RNN.md)
+29. Проблемы RNN и gated-архитектуры. Vanishing/exploding gradients, LSTM, GRU, teacher forcing, scheduled sampling. [RNN](DL/RNN.md)
+30. Seq2seq и attention до трансформеров. Encoder-decoder, bottleneck одного вектора, attention для машинного перевода. [RNN](DL/RNN.md)
+31. Токенизация текста. Word-level, char-level, subword, BPE, WordPiece, byte-level BPE, Unicode/UTF-8. [Tokenization](DL/Tokenization.md)
+32. Механизм внимания. Query, Key, Value, scaled dot-product attention, multi-head attention. [Transformer](DL/Transformer.md)
+33. Архитектура Transformer. Self-attention, masked attention, cross-attention, FFN, residual connections, LayerNorm, positional encoding. [Transformer](DL/Transformer.md)
+34. Pretraining в NLP. Зачем нужен self-supervised pretraining, encoder-only, encoder-decoder и decoder-only подходы. [Pretraining в NLP](DL/Pretraining_NLP.md)
+35. BERT-подобные и T5-подобные модели. Masked language modeling, text-to-text постановка, fine-tuning под downstream tasks. [Pretraining в NLP](DL/Pretraining_NLP.md)
+36. GPT-подобные модели. Autoregressive generation, next-token prediction, decoder-only архитектура, in-context learning. [Pretraining в NLP](DL/Pretraining_NLP.md)
 37. Масштабирование трансформеров и MoE. Scaling laws, compute/data/model size, sparse experts, router, балансировка экспертов.
 38. Дообучение LLM. Full fine-tuning, supervised fine-tuning, instruction tuning, PEFT, adapters, LoRA, prefix/prompt tuning.
 39. Preference tuning и RLHF. Reward model, человеческие предпочтения, отличие RLHF от SFT, роль KL-регуляризации.

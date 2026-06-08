@@ -1,7 +1,7 @@
 [Яндекс Хендбук](https://education.yandex.ru/handbook/ml/article/transformery?ysclid=mq5kusguwp455651245)
 Тут лонгрид ЦУшный хорошо объясняет частично
-![[Pasted image 20260608215302.png]]
-![[Pasted image 20260608215906.png]]
+![](../attachments/Pasted%20image%2020260608215302.png)
+![](../attachments/Pasted%20image%2020260608215906.png)
 ### Encoder-only
 Encoder-only модель видит входную последовательность целиком и в обе стороны. Это прекрасно подходит для задач, где нужно понять текст, построить его представление, сравнить его с другим текстом, классифицировать или ранжировать.
 

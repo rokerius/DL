@@ -1,5 +1,5 @@
 [Источник 1](https://docs.pytorch.org/tutorials/beginner/basics/intro.html) [Источник 2](https://huggingface.co/blog/dvgodoy/beginner-pytorch-tutorial)
-![[Pasted image 20260601140947.png|531]]
+<img src="../attachments/Pasted%20image%2020260601140947.png" width="531">
 
 ```python
 device = 'cuda' if torch.cuda.is_available() else 'cpu'
@@ -59,7 +59,7 @@ error = y_train_tensor - yhat
 loss = (error ** 2).mean()
 ```
 
-![[Pasted image 20260601144137.png|486]]
+<img src="../attachments/Pasted%20image%2020260601144137.png" width="486">
 #### Model
 ```python
 class ManualLinearRegression(nn.Module):

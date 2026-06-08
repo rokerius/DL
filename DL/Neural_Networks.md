@@ -1,6 +1,6 @@
 [Источник](https://cs231n.github.io/neural-networks-1/)
 ## Modeling one neuron
-![[Снимок экрана 2026-05-26 в 23.06.23.png|352]]
+<img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-05-26%20%D0%B2%2023.06.23.png" width="352">
 >_softmax_ - превращаем набор чисел в набор вероятностей
 > $\mathcal{L}_{CE} = - \sum_{i=1}^{C} y_i \log(\hat{y}_i)$
 
@@ -31,7 +31,7 @@
 
 ## Neural Network architectures
 ### Layer-wise organization
-![[Снимок экрана 2026-05-27 в 12.28.11.png]]
+![](../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-05-27%20%D0%B2%2012.28.11.png)
 ### Example feed-forward computation
 
 _One of the primary reasons that Neural Networks are organized into layers is that this structure makes it very simple and efficient to evaluate Neural Networks using matrix vector operations._
@@ -59,11 +59,11 @@ out = np.dot(W3, h2) + b3 # output neuron (1x1)
 
 First, note that as we increase the size and number of layers in a Neural Network, the **capacity** of the network increases. That is, the space of representable functions grows
 
-![[Pasted image 20260527132846.png|497]]
+<img src="../attachments/Pasted%20image%2020260527132846.png" width="497">
 
 However, this is both a blessing (since we can learn to classify more complicated data) and a curse (since it is easier to overfit the training data). But in practice, it is always better to use other methods to control overfitting instead of the number of neurons (smaller networks are harder to train with local methods such as Gradient Descent).
 
-![[Pasted image 20260527133507.png|497]]
+<img src="../attachments/Pasted%20image%2020260527133507.png" width="497">
 
 ## Setting up the data and the model
 [Источник](https://cs231n.github.io/neural-networks-2/)
@@ -80,7 +80,7 @@ However, this is both a blessing (since we can learn to classify more complicate
 5. `Xrot_reduced = np.dot(X, U[:,:100])` (*PCA* именно тут, св-ва SVD); X: [N x D] -> [N x 100], keeping the 100 dimensions of the data that contain the most variance
 6. *Whitening* operation takes the data in the eigenbasis and divides every dimension by the eigenvalue to normalize the scale. The geometric interpretation of this transformation is that if the input data is a multivariable gaussian, then the whitened data will be N(0, 1). `Xwhite = Xrot / np.sqrt(S + 1e-5)`
 
-![[Pasted image 20260527135847.png]]
+![](../attachments/Pasted%20image%2020260527135847.png)
 
 ### Weight Initialization
 
@@ -94,7 +94,7 @@ However, this is both a blessing (since we can learn to classify more complicate
 **bias** можно инициализировать нулями, потому что симметрия уже нарушается случайной инициализацией весов.
 
 **Batch Normalization** - слой нейросети, который после линейного преобразования нормализует активации по текущему батчу
-![[Снимок экрана 2026-06-01 в 19.30.08.png|323]] ![[Снимок экрана 2026-05-27 в 14.52.24.png|264]]
+<img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-06-01%20%D0%B2%2019.30.08.png" width="323"> <img src="../attachments/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202026-05-27%20%D0%B2%2014.52.24.png" width="264">
 При обучении среднее и дисперсия по батчу, а при тесте - по train.
 Обоснование эффективности - открытая проблема
 
@@ -162,7 +162,7 @@ $\frac{df(x)}{dx} = \frac{f(x+h)-f(x)}{h} \quad$ (bad, do not use) $\quad\quad\q
 **Vanilla update:**  `x += - learning_rate * dx`
 Далее будет подробнее про оптимизаторы (из курса Методы Выпуклой оптимизации)
 
-![[opt1.gif|280]] ![[opt2.gif|280]]
+<img src="../attachments/opt1.gif" width="280"> <img src="../attachments/opt2.gif" width="280">
 
 ### Общий подход (вариант 1)
 
@@ -184,7 +184,7 @@ $\frac{df(x)}{dx} = \frac{f(x+h)-f(x)}{h} \quad$ (bad, do not use) $\quad\quad\q
 - **Mini-batch training** — это способ обучения нейросети, когда данные делят на небольшие группы, и модель обновляет параметры после обработки каждой такой группы
 ### Автоматическое дифференцирование
 
-![[Автоматическое дифференцирование.pdf]]
+[Автоматическое дифференцирование.pdf](%D0%90%D0%B2%D1%82%D0%BE%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%BE%D0%B5%20%D0%B4%D0%B8%D1%84%D1%84%D0%B5%D1%80%D0%B5%D0%BD%D1%86%D0%B8%D1%80%D0%BE%D0%B2%D0%B0%D0%BD%D0%B8%D0%B5.pdf)
 
 **Forward-mode и reverse-mode** не конкурируют, а дополняют друг друга.
 
