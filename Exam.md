@@ -54,11 +54,11 @@
 48. Automatic Speech Recognition. Постановка STT-задачи, уровни токенизации, WER/CER, alignment problem.
 49. CTC для распознавания речи. Blank token, collapse operation, CTC loss, greedy/beam decoding.
 50. Архитектуры ASR и TTS. RNN-T/LAS как альтернативы CTC; TTS pipeline: text normalization, acoustic model, vocoder.
-51. Vision Transformer. Patch embedding, positional encoding, self-attention для изображений, сравнение ViT и CNN.
-52. GAN. Генератор, дискриминатор, adversarial objective, min-max игра, основные проблемы обучения.
-53. Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN/WGAN-GP.
-54. Autoencoders и VAE. Reconstruction, bottleneck, latent space, ELBO, KL-divergence, reparameterization trick.
-55. Normalizing Flows и дискретные латентные модели. Обратимые преобразования, change of variables, exact likelihood, идея VQ-VAE.
+51. Vision Transformer. Patch embedding, positional encoding, self-attention для изображений, сравнение ViT и CNN. [ViT](<DL/51-Vision Transformer. Patch embedding, positional encoding, self-attention для изображений, сравнение ViT и CNN.md>)
+52. GAN. Генератор, дискриминатор, adversarial objective, min-max игра, основные проблемы обучения. [GAN](<DL/52-GAN. Генератор, дискриминатор, adversarial objective, min-max игра, основные проблемы обучения..md>)
+53. Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN/WGAN-GP. [GAN variants](<DL/53-Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN, WGAN-GP.md>)
+54. Autoencoders и VAE. Reconstruction, bottleneck, latent space, ELBO, KL-divergence, reparameterization trick. [VAE](<DL/54-Autoencoders и VAE. Reconstruction, bottleneck, latent space, ELBO, KL-divergence, reparameterization trick..md>)
+55. Normalizing Flows и дискретные латентные модели. Обратимые преобразования, change of variables, exact likelihood, идея VQ-VAE. [Norm Flows](<DL/55-Normalizing Flows и дискретные латентные модели. Обратимые преобразования, change of variables, exact likelihood, идея VQ-VAE..md>)
 56. Графы как данные и GNN. Node/edge/graph-level задачи, message passing, агрегация соседей, примеры GCN/GraphSAGE/GAT.
 57. Проблемы и современные направления GNN. Oversmoothing, oversquashing, heterophily, масштабирование и graph foundation models.
 58. Диффузионные модели. Генерация из шума, score matching, denoising diffusion, forward/reverse process, U-Net.
