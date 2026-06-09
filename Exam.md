@@ -59,13 +59,13 @@
 53. Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN/WGAN-GP. [GAN variants](<DL/53-Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN, WGAN-GP.md>)
 54. Autoencoders и VAE. Reconstruction, bottleneck, latent space, ELBO, KL-divergence, reparameterization trick. [VAE](<DL/54-Autoencoders и VAE. Reconstruction, bottleneck, latent space, ELBO, KL-divergence, reparameterization trick..md>)
 55. Normalizing Flows и дискретные латентные модели. Обратимые преобразования, change of variables, exact likelihood, идея VQ-VAE. [Norm Flows](<DL/55-Normalizing Flows и дискретные латентные модели. Обратимые преобразования, change of variables, exact likelihood, идея VQ-VAE..md>)
-56. Графы как данные и GNN. Node/edge/graph-level задачи, message passing, агрегация соседей, примеры GCN/GraphSAGE/GAT.
-57. Проблемы и современные направления GNN. Oversmoothing, oversquashing, heterophily, масштабирование и graph foundation models.
-58. Диффузионные модели. Генерация из шума, score matching, denoising diffusion, forward/reverse process, U-Net.
-59. Условная и ускоренная диффузия. Guidance, text-to-image, DDIM/solvers/distillation, inpainting.
-60. Мультимодальные задачи и CLIP. Image-text retrieval, zero-shot classification, contrastive learning, общее пространство изображений и текста.
-61. Vision-Language Models и MLLM. Captioning, VQA, OCR, BLIP/LLaVA-подходы, visual encoder, projector, LLM, visual tokens.
-62. Оценка и ограничения мультимодальных моделей. Бенчмарки, работа с большими изображениями, multi-image режим, типичные ошибки VLM.
+56. Графы как данные и GNN. Node/edge/graph-level задачи, message passing, агрегация соседей, примеры GCN/GraphSAGE/GAT. [GNN](<DL/56-Графы как данные и GNN. Node-edge-graph-level задачи, message passing, агрегация соседей, примеры GCN-GraphSAGE-GAT..md>)
+57. Проблемы и современные направления GNN. Oversmoothing, oversquashing, heterophily, масштабирование и graph foundation models. [GNN problems](<DL/57-Проблемы и современные направления GNN. Oversmoothing, oversquashing, heterophily, масштабирование и graph foundation models..md>)
+58. Диффузионные модели. Генерация из шума, score matching, denoising diffusion, forward/reverse process, U-Net. [Diffusion](<DL/58-Диффузионные модели. Генерация из шума, score matching, denoising diffusion, forward-reverse process, U-Net..md>)
+59. Условная и ускоренная диффузия. Guidance, text-to-image, DDIM/solvers/distillation, inpainting. [Conditional Diffusion](<DL/59-Условная и ускоренная диффузия. Guidance, text-to-image, DDIM,solvers, distillation, inpainting..md>)
+60. Мультимодальные задачи и CLIP. Image-text retrieval, zero-shot classification, contrastive learning, общее пространство изображений и текста. [CLIP](<DL/60-Мультимодальные задачи и CLIP. Image-text retrieval, zero-shot classification, contrastive learning, общее пространство изображений и текста..md>)
+61. Vision-Language Models и MLLM. Captioning, VQA, OCR, BLIP/LLaVA-подходы, visual encoder, projector, LLM, visual tokens. [VLM](<DL/61-Vision-Language Models и MLLM. Captioning, VQA, OCR, BLIP LLaVA-подходы, visual encoder, projector, LLM, visual tokens..md>)
+62. Оценка и ограничения мультимодальных моделей. Бенчмарки, работа с большими изображениями, multi-image режим, типичные ошибки VLM. [VLM eval](<DL/62-Оценка и ограничения мультимодальных моделей. Бенчмарки, работа с большими изображениями, multi-image режим, типичные ошибки VLM..md>)
 
 ### Примечание к подчеркиванию
 
