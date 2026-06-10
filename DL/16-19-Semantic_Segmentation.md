@@ -32,7 +32,7 @@ Combines all of the previous improvements but adds skip-connections between reso
 ### Transformer-based segmentation
 Vision Transformer [супер подробно](https://www.youtube.com/watch?v=rdIySBWpCHc)
 Однако проще сначала почитать про трансформеры, а затем переходить к этой теме.
-
+Transformer-сегментация использует механизм внимания, чтобы учитывать глобальные связи между участками изображения и лучше распознавать объекты сложной формы.
 ### Promptable segmentation
 То есть модель получает изображение и **prompt** - подсказку, что именно нужно выделить и возвращает область пикселей, принадлежащих нужному объекту.
 
