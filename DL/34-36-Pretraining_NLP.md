@@ -1,6 +1,9 @@
 [Яндекс Хендбук](https://education.yandex.ru/handbook/ml/article/transformery?ysclid=mq5kusguwp455651245)
 [cs224N NLP](https://www.youtube.com/watch?v=DGfCRXuNA2w)
 Тут лонгрид ЦУшный хорошо объясняет начало
+
+**Self-supervised pretraining** — это предварительное обучение модели на больших объёмах неразмеченных данных, при котором обучающие цели и правильные ответы автоматически формируются из самих данных.
+
 ![](../attachments/Pasted%20image%2020260608215302.png)
 ![](../attachments/Pasted%20image%2020260608215906.png)
 ![[Снимок экрана 2026-06-09 в 15.00.06.png]]

@@ -36,6 +36,9 @@ $\substack{\text{Original}\\{embedding}}\quad \boxed{\vec{E}_i}+\Delta\vec{E}_i^
 - **Self-attention** — частный случай attention, где запросы, ключи и значения берутся из одной и той же последовательности. Этот пример и разобран выше
 - **Masked attention** — это attention с маской, которая запрещает модели учитывать некоторые токены. Чаще всего имеется в виду **causal mask** в языковых моделях: токен может смотреть только на себя и предыдущие токены, но не на будущие.
 
+А в трансформере это выглядит так (увидите дальше):
+![[Pasted image 20260610184425.png]]
+
 ## Transformer
 [3Blue1Brown](https://www.youtube.com/watch?v=wjZofJX0v4M&list=PLZHQObOWTQDM4E-dwvbnQTiyKDO-y9T2t&index=4)
 [Умная статья](https://transformer-circuits.pub/2021/framework/index.html)
@@ -77,6 +80,9 @@ High-Level Architecture:
 8. **Последний скрытый вектор** на нужной позиции проецируется в пространство словаря линейной головой.
 9. **Softmax** превращает логиты в вероятности по токенам.
 10. **Выбранный следующий токен** добавляется к префиксу, и цикл повторяется; на инференсе для ускорения при этом используют KV-cache.
+
+[Видео про все это вместе](https://www.youtube.com/watch?v=6vThlsJ_ASE)
+
 
 
 
