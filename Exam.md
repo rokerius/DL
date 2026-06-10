@@ -45,15 +45,15 @@
 39. Preference tuning и RLHF. Reward model, человеческие предпочтения, отличие RLHF от SFT, роль KL-регуляризации.
 40. In-context learning, prompting и Chain-of-Thought. Few-shot prompting, reasoning prompts, ограничения промптового подхода.
 41. Catastrophic forgetting при дообучении. Почему возникает, чем опасен, какие общие способы смягчения используются.
-42. Инференс LLM. Training vs inference, autoregressive generation, latency, KV-cache, почему генерация дорогая.
-43. Ускорение и сжатие LLM на инференсе. Efficient attention, квантизация INT8/INT4, trade-off памяти, скорости и качества.
-44. Декодирование LLM. Greedy decoding, sampling, temperature, top-k/top-p, beam search, связь стратегии декодирования с качеством ответа.
-45. RAG, длинный контекст и агенты. Как добавлять внешнее знание без переобучения, retrieval, tools, ограничения агентных схем.
-46. Звук как сигнал. Waveform, sampling, quantization, PCM, теорема Найквиста-Шеннона, aliasing.
-47. Частотное представление звука. Fourier transform, DFT/FFT, STFT, спектрограмма, mel-scale, log-mel features, MFCC.
-48. Automatic Speech Recognition. Постановка STT-задачи, уровни токенизации, WER/CER, alignment problem.
-49. CTC для распознавания речи. Blank token, collapse operation, CTC loss, greedy/beam decoding.
-50. Архитектуры ASR и TTS. RNN-T/LAS как альтернативы CTC; TTS pipeline: text normalization, acoustic model, vocoder.
+42. Инференс LLM. Training vs inference, autoregressive generation, latency, KV-cache, почему генерация дорогая. [LLM Inference](<DL/42-Инференс LLM. Training vs inference, autoregressive generation, latency, KV-cache, почему генерация дорогая..md>)
+43. Ускорение и сжатие LLM на инференсе. Efficient attention, квантизация INT8/INT4, trade-off памяти, скорости и качества. [LLM Efficiency](<DL/43-Ускорение и сжатие LLM на инференсе. Efficient attention, квантизация INT8-INT4, trade-off памяти, скорости и качества..md>)
+44. Декодирование LLM. Greedy decoding, sampling, temperature, top-k/top-p, beam search, связь стратегии декодирования с качеством ответа. [LLM Decoding](<DL/44-Декодирование LLM. Greedy decoding, sampling, temperature, top-k top-p, beam search, связь стратегии декодирования с качеством ответа..md>)
+45. RAG, длинный контекст и агенты. Как добавлять внешнее знание без переобучения, retrieval, tools, ограничения агентных схем. [RAG & Agents](<DL/45-RAG, длинный контекст и агенты. Как добавлять внешнее знание без переобучения, retrieval, tools, ограничения агентных схем..md>)
+46. Звук как сигнал. Waveform, sampling, quantization, PCM, теорема Найквиста-Шеннона, aliasing. [Audio Signal](<DL/46-Звук как сигнал. Waveform, sampling, quantization, PCM, теорема Найквиста-Шеннона, aliasing..md>)
+47. Частотное представление звука. Fourier transform, DFT/FFT, STFT, спектрограмма, mel-scale, log-mel features, MFCC. [Audio Frequency](<DL/47-Частотное представление звука. Fourier transform, DFT-FFT, STFT, спектрограмма, mel-scale, log-mel features, MFCC..md>)
+48. Automatic Speech Recognition. Постановка STT-задачи, уровни токенизации, WER/CER, alignment problem. [ASR](<DL/48-Automatic Speech Recognition. Постановка STT-задачи, уровни токенизации, WER-CER, alignment problem..md>)
+49. CTC для распознавания речи. Blank token, collapse operation, CTC loss, greedy/beam decoding. [CTC](<DL/49-CTC для распознавания речи. Blank token, collapse operation, CTC loss, greedy-beam decoding..md>)
+50. Архитектуры ASR и TTS. RNN-T/LAS как альтернативы CTC; TTS pipeline: text normalization, acoustic model, vocoder. [ASR/TTS arch](<DL/50-Архитектуры ASR и TTS. RNN-T-LAS как альтернативы CTC; TTS pipeline-text normalization, acoustic model, vocoder.md>)
 51. Vision Transformer. Patch embedding, positional encoding, self-attention для изображений, сравнение ViT и CNN. [ViT](<DL/51-Vision Transformer. Patch embedding, positional encoding, self-attention для изображений, сравнение ViT и CNN.md>)
 52. GAN. Генератор, дискриминатор, adversarial objective, min-max игра, основные проблемы обучения. [GAN](<DL/52-GAN. Генератор, дискриминатор, adversarial objective, min-max игра, основные проблемы обучения..md>)
 53. Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN/WGAN-GP. [GAN variants](<DL/53-Варианты и стабилизация GAN. Mode collapse, DCGAN, conditional GAN, pix2pix, CycleGAN, WGAN, WGAN-GP.md>)

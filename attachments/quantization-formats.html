@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Как четыре формата округляют одно число</title>
+<style>
+  :root{
+    --ink:#0E1419;
+    --panel:#161E26;
+    --panel-2:#1B252E;
+    --line:#2A3A47;
+    --line-soft:#223039;
+    --text:#E8EEF2;
+    --muted:#8096A5;
+    --muted-2:#5C7080;
+    --grid:#52707F;
+    --snap:#4FD1E0;
+    --value:#F2B441;
+    --err:#E8736A;
+    --uniform:#7E9CC9;
+    --float:#9BD6A0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;background:var(--ink);color:var(--text)}
+  body{
+    font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+    line-height:1.5;
+    padding:clamp(16px,3vw,40px);
+    -webkit-font-smoothing:antialiased;
+  }
+  .mono{font-family:ui-monospace,"SF Mono",Menlo,Consolas,"Liberation Mono",monospace}
+  .wrap{max-width:980px;margin:0 auto}
+
+  header{margin-bottom:26px}
+  .eyebrow{
+    font:600 11px/1 ui-monospace,monospace;letter-spacing:.22em;
+    text-transform:uppercase;color:var(--muted-2);margin-bottom:12px;
+  }
+  h1{
+    font-size:clamp(22px,3.4vw,30px);font-weight:650;letter-spacing:-.01em;
+    margin:0 0 8px;
+  }
+  .sub{color:var(--muted);max-width:62ch;font-size:14.5px}
+
+  /* control bar */
+  .controls{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px;margin:22px 0 26px;
+  }
+  .val-row{display:flex;align-items:baseline;gap:14px;flex-wrap:wrap;margin-bottom:14px}
+  .val-label{font:600 11px/1 ui-monospace,monospace;letter-spacing:.18em;text-transform:uppercase;color:var(--muted-2)}
+  .val-now{font-size:30px;font-weight:600;color:var(--value)}
+  .val-now .mono{font-size:30px}
+  input[type=range]{
+    -webkit-appearance:none;appearance:none;width:100%;height:4px;border-radius:4px;
+    background:linear-gradient(90deg,var(--line) 0%,var(--line) 100%);
+    outline:none;margin:6px 0 2px;cursor:pointer;
+  }
+  input[type=range]::-webkit-slider-thumb{
+    -webkit-appearance:none;width:18px;height:18px;border-radius:50%;
+    background:var(--value);border:3px solid var(--ink);box-shadow:0 0 0 1px var(--value);cursor:grab;
+  }
+  input[type=range]::-moz-range-thumb{
+    width:16px;height:16px;border-radius:50%;background:var(--value);
+    border:3px solid var(--ink);box-shadow:0 0 0 1px var(--value);cursor:grab;
+  }
+  .scale-ends{display:flex;justify-content:space-between;font:500 11px/1 ui-monospace,monospace;color:var(--muted-2);margin-top:4px}
+
+  .opts{display:flex;gap:18px;flex-wrap:wrap;align-items:center;margin-top:16px;padding-top:16px;border-top:1px solid var(--line-soft)}
+  .opt-group{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .opt-lbl{font:600 11px/1 ui-monospace,monospace;letter-spacing:.1em;text-transform:uppercase;color:var(--muted-2)}
+  .chip{
+    font:500 13px/1 system-ui,sans-serif;color:var(--muted);
+    background:var(--panel-2);border:1px solid var(--line);border-radius:8px;
+    padding:7px 11px;cursor:pointer;transition:.15s;
+  }
+  .chip:hover{border-color:var(--grid);color:var(--text)}
+  .chip.on{background:#23333d;border-color:var(--snap);color:var(--snap)}
+  .seg{display:inline-flex;border:1px solid var(--line);border-radius:8px;overflow:hidden}
+  .seg button{
+    font:500 13px/1 system-ui;background:transparent;color:var(--muted);
+    border:0;padding:8px 13px;cursor:pointer;transition:.15s
+  }
+  .seg button.on{background:#23333d;color:var(--snap)}
+  .nvfp-ctl{display:flex;align-items:center;gap:10px;min-width:230px;flex:1}
+  .nvfp-ctl input[type=range]{flex:1;margin:0}
+  .nvfp-ctl .v{font:600 13px/1 ui-monospace,monospace;color:var(--float);min-width:42px;text-align:right}
+
+  /* format cards */
+  .card{
+    background:var(--panel);border:1px solid var(--line);border-radius:14px;
+    padding:18px 20px 14px;margin-bottom:16px;
+  }
+  .card-head{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:2px}
+  .fmt-name{font-size:18px;font-weight:650;letter-spacing:-.01em}
+  .fmt-tags{display:flex;gap:7px;flex-wrap:wrap}
+  .tag{font:600 10.5px/1 ui-monospace,monospace;letter-spacing:.06em;padding:5px 8px;border-radius:6px;text-transform:uppercase}
+  .tag.bits{background:#232f38;color:var(--muted)}
+  .tag.uni{background:#1d2733;color:var(--uniform);border:1px solid #2c3f57}
+  .tag.flo{background:#1a2820;color:var(--float);border:1px solid #2b452f}
+  .fmt-note{font-size:13px;color:var(--muted);margin:6px 0 2px;max-width:70ch}
+
+  .nline{width:100%;height:96px;display:block;margin-top:6px}
+
+  .readout{
+    display:flex;gap:22px;flex-wrap:wrap;align-items:baseline;
+    margin-top:4px;padding-top:12px;border-top:1px solid var(--line-soft);
+    font-family:ui-monospace,monospace;font-size:13.5px
+  }
+  .readout .k{color:var(--muted-2);font-size:11px;letter-spacing:.08em;text-transform:uppercase;margin-right:7px}
+  .readout .snapv{color:var(--snap);font-weight:600;font-size:15px}
+  .readout .errv{color:var(--err);font-weight:600}
+  .readout .stepv{color:var(--text)}
+
+  footer{color:var(--muted-2);font-size:12.5px;margin-top:24px;max-width:74ch;line-height:1.6}
+  footer b{color:var(--muted);font-weight:600}
+  .legend{display:flex;gap:20px;flex-wrap:wrap;margin:0 0 8px;font-size:12.5px;color:var(--muted)}
+  .legend span{display:inline-flex;align-items:center;gap:7px}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <header>
+    <div class="eyebrow">Квантизация · одно число, четыре сетки</div>
+    <h1>Куда округлится твоё число в каждом формате</h1>
+    <p class="sub">Каждый формат умеет хранить только числа из своей сетки делений. Двигай значение и смотри, на какое ближайшее деление оно сядет и какая при этом ошибка. Главное различие видно в зуме у нуля.</p>
+  </header>
+
+  <div class="controls">
+    <div class="val-row">
+      <span class="val-label">Исходное число</span>
+      <span class="val-now mono" id="valNow">0.70</span>
+    </div>
+    <input type="range" id="slider" min="-6" max="6" step="0.01" value="0.7">
+    <div class="scale-ends mono"><span>−6</span><span>0</span><span>+6</span></div>
+
+    <div class="opts">
+      <div class="opt-group">
+        <span class="opt-lbl">Примеры</span>
+        <button class="chip" data-v="0.18">0.18</button>
+        <button class="chip" data-v="0.7">0.7</button>
+        <button class="chip" data-v="1.3">1.3</button>
+        <button class="chip" data-v="2.4">2.4</button>
+        <button class="chip" data-v="5.2">5.2</button>
+        <button class="chip" data-v="-1.8">−1.8</button>
+      </div>
+      <div class="opt-group">
+        <span class="opt-lbl">Масштаб оси</span>
+        <span class="seg">
+          <button id="zFull" class="on">весь диапазон</button>
+          <button id="zZoom">зум у нуля</button>
+        </span>
+      </div>
+      <div class="opt-group nvfp-ctl">
+        <span class="opt-lbl" style="color:var(--float)">Блок NVFP4 ×</span>
+        <input type="range" id="bscale" min="0.25" max="2" step="0.05" value="1">
+        <span class="v mono" id="bscaleV">1.00</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="legend">
+    <span><i class="dot" style="background:var(--value)"></i>исходное число</span>
+    <span><i class="dot" style="background:var(--snap)"></i>куда село (квантованное)</span>
+    <span><i class="dot" style="background:var(--grid)"></i>деление сетки</span>
+    <span><i class="dot" style="background:var(--err)"></i>ошибка округления</span>
+  </div>
+
+  <div id="cards"></div>
+
+  <footer>
+    <b>Как читать.</b> INT-форматы режут ось на равные ступеньки. FP-форматы (FP8, NVFP4) ставят деления часто у нуля и редко на краях, поэтому при том же числе бит точнее хранят мелкие значения, а их в модели большинство. Сравни пары: <b>INT4 против NVFP4</b> (оба 4 бита) и <b>INT8 против FP8</b> (оба 8 бит). У NVFP4 сетка базовых значений {0, ±0.5, ±1, ±1.5, ±2, ±3, ±4, ±6} растягивается множителем блока (двигай ползунок «Блок NVFP4 ×») — это и есть масштаб на блок из 16 чисел; поверх него ещё идёт один общий масштаб на всю матрицу.
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  // ---- build representable grids (positive side, then mirror) ----
+  function mirror(pos){
+    const s=new Set([0]);
+    pos.forEach(v=>{ if(v>0){ s.add(+v.toFixed(6)); s.add(-(+v.toFixed(6))); } });
+    return Array.from(s).sort((a,b)=>a-b);
+  }
+
+  // INT4: uniform, scale so 7*scale = 6  (codes -7..7 shown)
+  const INT4 = (function(){
+    const sc=6/7, a=[];
+    for(let k=-7;k<=7;k++) a.push(+(k*sc).toFixed(6));
+    return a.sort((x,y)=>x-y);
+  })();
+  const INT4_STEP = 6/7;
+
+  // INT8: uniform, scale so 127*scale = 6
+  const INT8 = (function(){
+    const sc=6/127, a=[];
+    for(let k=-127;k<=127;k++) a.push(+(k*sc).toFixed(6));
+    return a.sort((x,y)=>x-y);
+  })();
+  const INT8_STEP = 6/127;
+
+  // FP8 E4M3 (1 sign, 4 exp bias 7, 3 mantissa) within [-6,6]
+  const FP8 = (function(){
+    const pos=[];
+    // subnormals e=0
+    for(let m=0;m<=7;m++) pos.push((m/8)*Math.pow(2,-6));
+    // normals e=1..15  (skip the single NaN code at e=15,m=7; irrelevant here)
+    for(let e=1;e<=15;e++){
+      for(let m=0;m<=7;m++){
+        if(e===15&&m===7) continue;
+        const v=(1+m/8)*Math.pow(2,e-7);
+        if(v<=6.5) pos.push(v);
+      }
+    }
+    return mirror(pos);
+  })();
+
+  // NVFP4 base grid E2M1 (block scale applied at use time)
+  const NVFP4_BASE = [0,0.5,1,1.5,2,3,4,6,-0.5,-1,-1.5,-2,-3,-4,-6].sort((a,b)=>a-b);
+
+  function nearest(arr,x){
+    let best=arr[0],bd=Math.abs(x-arr[0]);
+    for(let i=1;i<arr.length;i++){
+      const d=Math.abs(x-arr[i]);
+      if(d<bd){bd=d;best=arr[i];}
+    }
+    return best;
+  }
+
+  // ---- state ----
+  let value=0.7, zoom=false, bscale=1.0;
+
+  const formats=[
+    {id:"int8", name:"INT8", bits:"8 бит", kind:"uni",
+     note:"Равномерная сетка из 256 ступенек. Один масштаб на всю матрицу. Точно почти везде, но шаг всюду одинаковый.",
+     grid:()=>INT8, step:()=>INT8_STEP},
+    {id:"fp8", name:"FP8 · E4M3", bits:"8 бит", kind:"flo",
+     note:"Плавающая сетка: очень частые деления у нуля, редкие на краях. При тех же 8 битах точнее хранит мелкие значения и выбросы.",
+     grid:()=>FP8, step:null},
+    {id:"int4", name:"INT4", bits:"4 бита", kind:"uni",
+     note:"Равномерная сетка всего из 16 ступенек. Шаг крупный и одинаковый — мелкие значения округляются грубо.",
+     grid:()=>INT4, step:()=>INT4_STEP},
+    {id:"nvfp4", name:"NVFP4 · E2M1", bits:"4 бита", kind:"flo",
+     note:"Плавающая сетка из 16 значений: чаще у нуля (шаг 0.5), реже на краях. Базовые деления растягиваются масштабом блока.",
+     grid:()=>NVFP4_BASE.map(v=>+(v*bscale).toFixed(6)), step:null},
+  ];
+
+  // ---- render ----
+  const VBW=1000, VBH=96, PADX=26, BASE_Y=58, AX_X0=PADX, AX_X1=VBW-PADX;
+
+  function svgLine(fmt){
+    const range = zoom?1:6;
+    const lo=-range, hi=range;
+    const grid=fmt.grid();
+    const q=nearest(grid,value);
+    const err=Math.abs(value-q);
+
+    const map = v => AX_X0 + (v-lo)/(hi-lo)*(AX_X1-AX_X0);
+    const inRange = v => v>=lo-1e-9 && v<=hi+1e-9;
+
+    let ticks="";
+    grid.forEach(v=>{
+      if(!inRange(v)) return;
+      const x=map(v);
+      const isSnap=Math.abs(v-q)<1e-9;
+      if(isSnap) return; // draw snap separately on top
+      ticks+=`<line x1="${x.toFixed(2)}" y1="${BASE_Y-6}" x2="${x.toFixed(2)}" y2="${BASE_Y+6}" stroke="var(--grid)" stroke-width="${grid.length>60?1:1.6}" opacity="${grid.length>60?0.5:0.8}"/>`;
+    });
+
+    // baseline
+    let s=`<line x1="${AX_X0}" y1="${BASE_Y}" x2="${AX_X1}" y2="${BASE_Y}" stroke="var(--line)" stroke-width="1.5"/>`;
+    // zero marker
+    if(inRange(0)){const zx=map(0);s+=`<line x1="${zx}" y1="${BASE_Y-14}" x2="${zx}" y2="${BASE_Y+14}" stroke="var(--line)" stroke-width="1" stroke-dasharray="2 3"/>`;}
+    s+=ticks;
+
+    const valVisible=inRange(value);
+    const snapVisible=inRange(q);
+
+    // error span (between value and snap) on baseline
+    if(valVisible&&snapVisible&&err>1e-6){
+      const x1=map(value),x2=map(q);
+      s+=`<line x1="${x1.toFixed(2)}" y1="${BASE_Y}" x2="${x2.toFixed(2)}" y2="${BASE_Y}" stroke="var(--err)" stroke-width="3"/>`;
+    }
+
+    // snap point
+    if(snapVisible){
+      const sx=map(q);
+      s+=`<line x1="${sx.toFixed(2)}" y1="${BASE_Y-9}" x2="${sx.toFixed(2)}" y2="${BASE_Y+9}" stroke="var(--snap)" stroke-width="2.4"/>`;
+      s+=`<circle cx="${sx.toFixed(2)}" cy="${BASE_Y}" r="4.5" fill="var(--snap)"/>`;
+    }
+
+    // value marker (amber) + connector
+    if(valVisible){
+      const vx=map(value);
+      s+=`<line x1="${vx.toFixed(2)}" y1="14" x2="${vx.toFixed(2)}" y2="${BASE_Y}" stroke="var(--value)" stroke-width="2"/>`;
+      s+=`<circle cx="${vx.toFixed(2)}" cy="14" r="4.5" fill="var(--value)"/>`;
+      s+=`<text x="${vx.toFixed(2)}" y="9" fill="var(--value)" font-size="11" font-family="ui-monospace,monospace" text-anchor="middle">${value.toFixed(2)}</text>`;
+    } else {
+      const edge = value<lo? AX_X0 : AX_X1;
+      const anchor = value<lo? "start":"end";
+      s+=`<text x="${edge}" y="20" fill="var(--value)" font-size="11" font-family="ui-monospace,monospace" text-anchor="${anchor}">${value.toFixed(2)} вне зума →</text>`;
+    }
+
+    // axis end labels
+    s+=`<text x="${AX_X0}" y="${BASE_Y+26}" fill="var(--muted-2)" font-size="10.5" font-family="ui-monospace,monospace">${lo}</text>`;
+    s+=`<text x="${AX_X1}" y="${BASE_Y+26}" fill="var(--muted-2)" font-size="10.5" font-family="ui-monospace,monospace" text-anchor="end">+${hi}</text>`;
+
+    return {svg:s,q,err,grid};
+  }
+
+  function localStep(fmt,q){
+    // distance to nearest neighbour on the grid around q (the local resolution)
+    const g=fmt.grid();
+    let below=-Infinity,above=Infinity;
+    for(const v of g){ if(v<q-1e-9&&v>below) below=v; if(v>q+1e-9&&v<above) above=v; }
+    const cand=[];
+    if(isFinite(below)) cand.push(q-below);
+    if(isFinite(above)) cand.push(above-q);
+    return cand.length?Math.min(...cand):null;
+  }
+
+  function render(){
+    document.getElementById("valNow").textContent=value.toFixed(2);
+    document.getElementById("bscaleV").textContent=bscale.toFixed(2);
+
+    const root=document.getElementById("cards");
+    root.innerHTML="";
+    formats.forEach(fmt=>{
+      const r=svgLine(fmt);
+      const step=localStep(fmt,r.q);
+      const card=document.createElement("div");
+      card.className="card";
+      const tagKind = fmt.kind==="uni"
+        ? `<span class="tag uni">равномерная</span>`
+        : `<span class="tag flo">плавающая</span>`;
+      card.innerHTML=`
+        <div class="card-head">
+          <span class="fmt-name">${fmt.name}</span>
+          <span class="fmt-tags"><span class="tag bits">${fmt.bits}</span>${tagKind}</span>
+        </div>
+        <p class="fmt-note">${fmt.note}</p>
+        <svg class="nline" viewBox="0 0 ${VBW} ${VBH}" preserveAspectRatio="none" role="img">${r.svg}</svg>
+        <div class="readout">
+          <span><span class="k">село на</span><span class="snapv">${r.q.toFixed(4)}</span></span>
+          <span><span class="k">ошибка</span><span class="errv">${r.err.toFixed(4)}</span></span>
+          <span><span class="k">шаг сетки здесь</span><span class="stepv">${step!=null?step.toFixed(4):"—"}</span></span>
+        </div>`;
+      root.appendChild(card);
+    });
+  }
+
+  // ---- wiring ----
+  const slider=document.getElementById("slider");
+  slider.addEventListener("input",e=>{ value=parseFloat(e.target.value); render(); });
+
+  document.querySelectorAll(".chip[data-v]").forEach(b=>{
+    b.addEventListener("click",()=>{
+      value=parseFloat(b.dataset.v);
+      slider.value=value;
+      render();
+    });
+  });
+
+  const zFull=document.getElementById("zFull"), zZoom=document.getElementById("zZoom");
+  zFull.addEventListener("click",()=>{zoom=false;zFull.classList.add("on");zZoom.classList.remove("on");render();});
+  zZoom.addEventListener("click",()=>{zoom=true;zZoom.classList.add("on");zFull.classList.remove("on");render();});
+
+  const bs=document.getElementById("bscale");
+  bs.addEventListener("input",e=>{ bscale=parseFloat(e.target.value); render(); });
+
+  render();
+})();
+</script>
+</body>
+</html>
