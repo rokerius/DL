@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 460" font-family="system-ui,-apple-system,Segoe UI,Roboto,sans-serif">
+  <rect width="780" height="460" fill="#0E1419"/>
+
+  <!-- title -->
+  <text x="40" y="46" fill="#EAF1F5" font-size="21" font-weight="650">Bottleneck-блок ResNet</text>
+  <text x="40" y="70" fill="#8197A6" font-size="13">высота столбика = число каналов · сужаем перед дорогой 3×3, потом разжимаем обратно</text>
+
+  <!-- baseline -->
+  <line x1="60" y1="350" x2="720" y2="350" stroke="#26333E" stroke-width="1.5"/>
+
+  <!-- skip connection arc (input bypasses straight to the sum) -->
+  <path d="M 100 110 C 100 70, 660 70, 660 110" fill="none" stroke="#EC7567" stroke-width="2.2" stroke-dasharray="5 4"/>
+  <polygon points="660,112 655,100 665,100" fill="#EC7567"/>
+  <text x="380" y="58" fill="#EC7567" font-size="12.5" text-anchor="middle" font-weight="600">skip-связь: вход в обход, прибавляется в конце ( + x )</text>
+
+  <!-- BAR 1: input 256 -->
+  <rect x="70" y="130" width="80" height="220" rx="3" fill="#F2B441"/>
+  <text x="110" y="123" fill="#F2B441" font-size="15" font-weight="650" text-anchor="middle">256</text>
+  <text x="110" y="372" fill="#EAF1F5" font-size="12.5" text-anchor="middle" font-weight="600">вход</text>
+  <text x="110" y="390" fill="#8197A6" font-size="11" text-anchor="middle">256 каналов</text>
+
+  <!-- arrow -->
+  <line x1="158" y1="240" x2="212" y2="240" stroke="#5A6E7C" stroke-width="1.5"/>
+  <polygon points="212,240 204,235 204,245" fill="#5A6E7C"/>
+
+  <!-- BAR 2: 1x1 squeeze 64 -->
+  <rect x="220" y="295" width="80" height="55" rx="3" fill="#43C9C0"/>
+  <text x="260" y="288" fill="#43C9C0" font-size="15" font-weight="650" text-anchor="middle">64</text>
+  <text x="260" y="372" fill="#EAF1F5" font-size="12.5" text-anchor="middle" font-weight="600">свёртка 1×1</text>
+  <text x="260" y="390" fill="#8197A6" font-size="11" text-anchor="middle">сжать каналы</text>
+  <text x="260" y="406" fill="#43C9C0" font-size="10.5" text-anchor="middle">256 → 64</text>
+
+  <!-- arrow -->
+  <line x1="308" y1="322" x2="362" y2="322" stroke="#5A6E7C" stroke-width="1.5"/>
+  <polygon points="362,322 354,317 354,327" fill="#5A6E7C"/>
+
+  <!-- BAR 3: 3x3 (at 64) -->
+  <rect x="370" y="295" width="80" height="55" rx="3" fill="#43C9C0"/>
+  <text x="410" y="288" fill="#43C9C0" font-size="15" font-weight="650" text-anchor="middle">64</text>
+  <text x="410" y="372" fill="#EAF1F5" font-size="12.5" text-anchor="middle" font-weight="600">свёртка 3×3</text>
+  <text x="410" y="390" fill="#8197A6" font-size="11" text-anchor="middle">дорогая, но по 64</text>
+  <text x="410" y="406" fill="#43C9C0" font-size="10.5" text-anchor="middle">узкое место</text>
+
+  <!-- arrow -->
+  <line x1="458" y1="240" x2="512" y2="240" stroke="#5A6E7C" stroke-width="1.5"/>
+  <polygon points="512,240 504,235 504,245" fill="#5A6E7C"/>
+
+  <!-- BAR 4: 1x1 expand 256 -->
+  <rect x="520" y="130" width="80" height="220" rx="3" fill="#F2B441"/>
+  <text x="560" y="123" fill="#F2B441" font-size="15" font-weight="650" text-anchor="middle">256</text>
+  <text x="560" y="372" fill="#EAF1F5" font-size="12.5" text-anchor="middle" font-weight="600">свёртка 1×1</text>
+  <text x="560" y="390" fill="#8197A6" font-size="11" text-anchor="middle">разжать каналы</text>
+  <text x="560" y="406" fill="#F2B441" font-size="10.5" text-anchor="middle">64 → 256</text>
+
+  <!-- sum node -->
+  <circle cx="660" cy="240" r="20" fill="#18222C" stroke="#EC7567" stroke-width="2"/>
+  <text x="660" y="247" fill="#EC7567" font-size="22" font-weight="650" text-anchor="middle">+</text>
+  <line x1="608" y1="240" x2="636" y2="240" stroke="#5A6E7C" stroke-width="1.5"/>
+  <polygon points="636,240 628,235 628,245" fill="#5A6E7C"/>
+  <text x="660" y="300" fill="#EAF1F5" font-size="12.5" text-anchor="middle" font-weight="600">выход</text>
+  <text x="660" y="318" fill="#8197A6" font-size="11" text-anchor="middle">256 каналов</text>
+
+  <!-- legend -->
+  <rect x="70" y="430" width="12" height="12" rx="2" fill="#F2B441"/>
+  <text x="88" y="440" fill="#8197A6" font-size="11.5">полная ширина каналов</text>
+  <rect x="270" y="430" width="12" height="12" rx="2" fill="#43C9C0"/>
+  <text x="288" y="440" fill="#8197A6" font-size="11.5">суженное узкое место (дёшево)</text>
+  <line x1="520" y1="436" x2="540" y2="436" stroke="#EC7567" stroke-width="2.2" stroke-dasharray="5 4"/>
+  <text x="548" y="440" fill="#8197A6" font-size="11.5">обходная связь</text>
+</svg>
