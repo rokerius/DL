@@ -40,11 +40,11 @@
 34. Pretraining в NLP. Зачем нужен self-supervised pretraining, encoder-only, encoder-decoder и decoder-only подходы. [Pretraining в NLP](DL/Pretraining_NLP.md)
 35. BERT-подобные и T5-подобные модели. Masked language modeling, text-to-text постановка, fine-tuning под downstream tasks. [Pretraining в NLP](DL/Pretraining_NLP.md)
 36. GPT-подобные модели. Autoregressive generation, next-token prediction, decoder-only архитектура, in-context learning. [Pretraining в NLP](DL/Pretraining_NLP.md)
-37. Масштабирование трансформеров и MoE. Scaling laws, compute/data/model size, sparse experts, router, балансировка экспертов.
-38. Дообучение LLM. Full fine-tuning, supervised fine-tuning, instruction tuning, PEFT, adapters, LoRA, prefix/prompt tuning.
-39. Preference tuning и RLHF. Reward model, человеческие предпочтения, отличие RLHF от SFT, роль KL-регуляризации.
-40. In-context learning, prompting и Chain-of-Thought. Few-shot prompting, reasoning prompts, ограничения промптового подхода.
-41. Catastrophic forgetting при дообучении. Почему возникает, чем опасен, какие общие способы смягчения используются.
+37. Масштабирование трансформеров и MoE. Scaling laws, compute/data/model size, sparse experts, router, балансировка экспертов. [Transformer Scaling](DL/37-Transformer_Scaling)
+38. Дообучение LLM. Full fine-tuning, supervised fine-tuning, instruction tuning, PEFT, adapters, LoRA, prefix/prompt tuning. [LLM fine-tuning](38-39-LLM_fine-tuning.md)
+39. Preference tuning и RLHF. Reward model, человеческие предпочтения, отличие RLHF от SFT, роль KL-регуляризации. [LLM fine-tuning](38-39-LLM_fine-tuning.md)
+40. In-context learning, prompting и Chain-of-Thought. Few-shot prompting, reasoning prompts, ограничения промптового подхода. [Prompting](DL/40-41-Prompting)
+41. Catastrophic forgetting при дообучении. Почему возникает, чем опасен, какие общие способы смягчения используются. [Prompting](DL/40-41-Prompting)
 42. Инференс LLM. Training vs inference, autoregressive generation, latency, KV-cache, почему генерация дорогая. [LLM Inference](<DL/42-Инференс LLM. Training vs inference, autoregressive generation, latency, KV-cache, почему генерация дорогая..md>)
 43. Ускорение и сжатие LLM на инференсе. Efficient attention, квантизация INT8/INT4, trade-off памяти, скорости и качества. [LLM Efficiency](<DL/43-Ускорение и сжатие LLM на инференсе. Efficient attention, квантизация INT8-INT4, trade-off памяти, скорости и качества..md>)
 44. Декодирование LLM. Greedy decoding, sampling, temperature, top-k/top-p, beam search, связь стратегии декодирования с качеством ответа. [LLM Decoding](<DL/44-Декодирование LLM. Greedy decoding, sampling, temperature, top-k top-p, beam search, связь стратегии декодирования с качеством ответа..md>)
